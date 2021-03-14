@@ -1,0 +1,216 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CornUI.Controls">
+
+    <!--#region SysButton-->
+    <Style TargetType="{x:Type Button}"
+           x:Key="SysButton">
+        <Style.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="..\/Asset/SystemIcon.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Style.Resources>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Height" Value="19"/>
+        <Setter Property="Width" Value="19"/>
+        <Setter Property="Padding" Value="1,1,1,1"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Opacity" Value="0.75"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region Wnd-->
+    <Style TargetType="{x:Type local:Cwnd}"
+           x:Key="CwndStyle">
+        <Style.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="..\/Asset/SystemIcon.xaml"/>
+                    <ResourceDictionary Source="..\/Utility/Conversion.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Style.Resources>
+        <Setter Property="WindowStyle" Value="None"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="MinHeight" Value="{Binding MinHeight, FallbackValue=200}"/>
+        <Setter Property="MaxHeight" Value="{Binding MaxHeight, FallbackValue=-1}"/>
+        <Setter Property="MinWidth" Value="{Binding MinWidth, FallbackValue=200}"/>
+        <Setter Property="MaxWidth" Value="{Binding MaxWidth, FallbackValue=-1}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Cwnd}">
+                    <Grid>
+                        <!--#region WindowContent-->
+                        <Border Margin="{Binding BorderWidth, Converter={StaticResource ThicknessConverter}, FallbackValue=2}"
+                            CornerRadius="{Binding BorderRoundEgdeRadius, FallbackValue=12}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="1" BlurRadius="5"/>
+                            </Border.Effect>
+
+                            <Grid>
+                                <Rectangle x:Name="backGround"
+                                           Fill="{Binding BackColor, FallbackValue=White}"
+                                           RadiusX="{Binding BottomRoundEdgeRadius, FallbackValue=10}"
+                                           RadiusY="{Binding BottomRoundEdgeRadius, FallbackValue=10}"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="{Binding TopBarHeight, FallbackValue=25}"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Rectangle x:Name="topBar1"
+                                               Grid.Row="0"
+                                               Fill="{Binding TopBarColor, FallbackValue=LightGray}"
+                                               RadiusX="{Binding TopRoundEdgeRadius, FallbackValue=10}"
+                                               RadiusY="{Binding TopRoundEdgeRadius, FallbackValue=10}"/>
+                                    <Rectangle x:Name="topBar2"
+                                               Grid.Row="0"
+                                               VerticalAlignment="Bottom"
+                                               Height="{Binding TopRoundEdgeRadius, FallbackValue=10}"
+                                               Fill="{Binding TopBarColor, FallbackValue=LightGray}"/>
+                                    <Grid x:Name="topBarTitle"
+                                          Grid.Row="0"
+                                          VerticalAlignment="Stretch"
+                                          HorizontalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Margin="10, 0, 10,0">
+                                            <TextBlock VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       Text="{Binding Title, FallbackValue=GenericTitle}"
+                                                       Foreground="{Binding FontColor, FallbackValue=Black}"
+                                                       FontSize="{Binding FontSize, FallbackValue=14}"
+                                                       FontFamily="{Binding FontType, FallbackValue=Tahoma}"
+                                                       FontWeight="{Binding FontWeight, FallbackValue=Bold}"/>
+                                        </Border>
+
+                                        <Image Grid.Column="1" 
+                                               Stretch="Uniform"
+                                               Source="{Binding IconPath, FallbackValue=Icon.png}"
+                                               Width="{Binding IconSize, FallbackValue=20}"
+                                               VerticalAlignment="Stretch"
+                                               HorizontalAlignment="Left"
+                                               RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    </Grid>
+
+                                    <Grid HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Width="82"
+                                          Height="19">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.Resources>
+                                            <Style TargetType="Image">
+                                                <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+                                                <Setter Property="Margin" Value="2,2,2,2"/>
+                                            </Style>
+                                        </Grid.Resources>
+
+                                        <Image Grid.Column="2" Source="{StaticResource close}"/>
+                                        <Image Grid.Column="1" Source="{StaticResource maximize}"/>
+                                        <Image Grid.Column="0" Source="{StaticResource minimize}"/>
+
+                                        <Button Grid.Column="2" x:Name="closeButton" Style="{StaticResource SysButton}">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="20"/>
+                                                    <Setter Property="BorderThickness" Value="1"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+
+                                        <Button Grid.Column="1" x:Name="maximizeButton" Style="{StaticResource SysButton}">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="20"/>
+                                                    <Setter Property="BorderThickness" Value="1"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+
+                                        <Button Grid.Column="0" x:Name="minimizeButton" Style="{StaticResource SysButton}">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="20"/>
+                                                    <Setter Property="BorderThickness" Value="1"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                    </Grid>
+
+                                    <AdornerDecorator Grid.Row="1">
+                                        <ContentPresenter/>
+                                    </AdornerDecorator>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <!--#endregion-->
+                        <!--#region Resize Grid-->
+                        <Grid x:Name="resizeGrid">
+                            <Grid.Resources>
+                                <Style TargetType="Rectangle">
+                                    <Setter Property="Fill" Value="Transparent"/>
+                                    <Setter Property="Stroke" Value="Transparent"/>
+                                </Style>
+                            </Grid.Resources>
+
+                            <Rectangle VerticalAlignment="Top"
+                                       Height="5"
+                                       x:Name="top"
+                                       Margin="10,0,10,0"
+                                       Cursor="SizeNS"/>
+                            <Rectangle x:Name="bottom"
+                                       Height="5"
+                                       VerticalAlignment="Bottom"
+                                       Margin="10,0,10,0"
+                                       Cursor="SizeNS"/>
+                            <Rectangle HorizontalAlignment="Left"
+                                       Margin="0,5,0,5"
+                                       Width="5"
+                                       x:Name="left"
+                                       Cursor="SizeWE"/>
+                            <Rectangle Margin="0,10,0,10"
+                                       Width="5"
+                                       HorizontalAlignment="Right"
+                                       x:Name="right"
+                                       Cursor="SizeWE"/>
+                            <Rectangle HorizontalAlignment="Left"
+                                       VerticalAlignment="Bottom"
+                                       Width="10"
+                                       Height="10"
+                                       x:Name="bottomLeft"
+                                       Cursor="SizeNESW"/>
+                            <Rectangle VerticalAlignment="Bottom"
+                                       Height="10"
+                                       Width="10"
+                                       HorizontalAlignment="Right"
+                                       x:Name="bottomRight"
+                                       Cursor="SizeNWSE"/>
+                            <Rectangle HorizontalAlignment="Right"
+                                       Width="10"
+                                       Height="10"
+                                       VerticalAlignment="Top"
+                                       x:Name="topRight"
+                                       Cursor="SizeNESW"/>
+                            <Rectangle HorizontalAlignment="Left"
+                                       Width="10"
+                                       VerticalAlignment="Top"
+                                       Height="10"
+                                       x:Name="topLeft"
+                                       Cursor="SizeNWSE"/>
+                        </Grid>
+                        <!--#endregion-->
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+</ResourceDictionary>

@@ -21,4 +21,21 @@ namespace CornUI.Utility
             throw new NotImplementedException();
         }
     }
+    class MaximizePaddingConverter :IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is double)
+            {
+                double margin = (double)value;
+                return new Thickness(margin, margin, margin, 0);
+            }
+            return new Thickness();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

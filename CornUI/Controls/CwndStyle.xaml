@@ -34,27 +34,20 @@
         </Style.Resources>
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
-                <WindowChrome CaptionHeight="35" ResizeBorderThickness="10"/>
+                <WindowChrome CaptionHeight="25" ResizeBorderThickness="10"/>
             </Setter.Value>
         </Setter>
         <Setter Property="WindowState" Value="{Binding CwndWindowState}"/>
-        <Setter Property="WindowStyle" Value="None"/>
-        <Setter Property="ResizeMode" Value="NoResize"/>
         <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="WindowStyle" Value="None"/>
         <Setter Property="MinHeight" Value="200"/>
         <Setter Property="MinWidth" Value="300"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Cwnd}">
-                    <Grid>
-                        <!--#region WindowContent-->
-                        <Border x:Name="windowBorder" 
-                                Margin="{Binding BorderWidth, Converter={StaticResource ThicknessConverter}, FallbackValue=2}"
-                                CornerRadius="{Binding BorderRoundEdgeRadius, FallbackValue=12}">
-                            <Border.Effect>
-                                <DropShadowEffect ShadowDepth="1" BlurRadius="{Binding BorderWidth}" Opacity="0.5"/>
-                            </Border.Effect>
-
+                    <Border Padding="{Binding MaximizePadding, Converter={StaticResource MaximizePaddingConverter}, FallbackValue=10}">
+                        <Grid>
+                            <!--#region WindowContent-->
                             <Grid>
                                 <Rectangle x:Name="backGround"
                                            Fill="{Binding BackColor, FallbackValue=White}"
@@ -62,21 +55,22 @@
                                            RadiusY="{Binding RoundEdgeRadius, FallbackValue=10}"/>
                                 <Grid>
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="0"/>
                                         <RowDefinition Height="{Binding TopBarHeight, FallbackValue=25}"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <Rectangle x:Name="topBar1"
-                                               Grid.Row="0"
+                                               Grid.Row="1"
                                                Fill="{Binding TopBarColor, FallbackValue=LightGray}"
                                                RadiusX="{Binding RoundEdgeRadius, FallbackValue=10}"
                                                RadiusY="{Binding RoundEdgeRadius, FallbackValue=10}"/>
                                     <Rectangle x:Name="topBar2"
-                                               Grid.Row="0"
+                                               Grid.Row="1"
                                                VerticalAlignment="Bottom"
                                                Height="{Binding RoundEdgeRadius, FallbackValue=10}"
                                                Fill="{Binding TopBarColor, FallbackValue=LightGray}"/>
                                     <Grid x:Name="topBarTitle"
-                                          Grid.Row="0"
+                                          Grid.Row="1"
                                           VerticalAlignment="Stretch"
                                           HorizontalAlignment="Center">
                                         <Grid.ColumnDefinitions>
@@ -103,10 +97,11 @@
                                     </Grid>
 
                                     <Grid HorizontalAlignment="Right"
-                                          VerticalAlignment="Center"
-                                          WindowChrome.IsHitTestVisibleInChrome="True"
-                                          Width="82"
-                                          Height="19">
+                                      VerticalAlignment="Center"
+                                      Grid.Row="1"
+                                      WindowChrome.IsHitTestVisibleInChrome="True"
+                                      Width="82"
+                                      Height="19">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
@@ -152,74 +147,18 @@
                                         </Button>
                                     </Grid>
 
-                                    <AdornerDecorator Grid.Row="1">
+                                    <AdornerDecorator Grid.Row="2">
                                         <ContentPresenter/>
                                     </AdornerDecorator>
                                 </Grid>
                             </Grid>
-                        </Border>
-                        <Border BorderThickness="1" 
-                                BorderBrush="{Binding TopBarColor, FallbackValue=LightGray}" 
-                                Margin="{Binding BorderWidth, Converter={StaticResource ThicknessConverter}, FallbackValue=2}"
-                                Opacity="0.5"
-                                CornerRadius="{Binding RoundEdgeRadius, FallbackValue=10}"/>
-                        <!--#endregion-->
-                        <!--#region Resize Grid-->
-                        <Grid x:Name="resizeGrid" Margin="{Binding ResizeBorderWidth, Converter={StaticResource ThicknessConverter}, FallbackValue=2}">
-                            <Grid.Resources>
-                                <Style TargetType="Rectangle">
-                                    <Setter Property="Fill" Value="Transparent"/>
-                                    <Setter Property="Stroke" Value="Transparent"/>
-                                </Style>
-                            </Grid.Resources>
-
-                            <Rectangle VerticalAlignment="Top"
-                                       Height="{Binding ResizeRectSizeMiddle}"
-                                       x:Name="top"
-                                       Margin="10,0,10,0"
-                                       Cursor="SizeNS"/>
-                            <Rectangle x:Name="bottom"
-                                       Height="{Binding ResizeRectSizeMiddle}"
-                                       VerticalAlignment="Bottom"
-                                       Margin="10,0,10,0"
-                                       Cursor="SizeNS"/>
-                            <Rectangle HorizontalAlignment="Left"
-                                       Margin="0,5,0,5"
-                                       Width="{Binding ResizeRectSizeMiddle}"
-                                       x:Name="left"
-                                       Cursor="SizeWE"/>
-                            <Rectangle Margin="0,10,0,10"
-                                       Width="{Binding ResizeRectSizeMiddle}"
-                                       HorizontalAlignment="Right"
-                                       x:Name="right"
-                                       Cursor="SizeWE"/>
-                            <Rectangle HorizontalAlignment="Left"
-                                       VerticalAlignment="Bottom"
-                                       Width="{Binding ResizeRectSizeCorner}"
-                                       Height="{Binding ResizeRectSizeCorner}"
-                                       x:Name="bottomLeft"
-                                       Cursor="SizeNESW"/>
-                            <Rectangle VerticalAlignment="Bottom"
-                                       Height="{Binding ResizeRectSizeCorner}"
-                                       Width="{Binding ResizeRectSizeCorner}"
-                                       HorizontalAlignment="Right"
-                                       x:Name="bottomRight"
-                                       Cursor="SizeNWSE"/>
-                            <Rectangle HorizontalAlignment="Right"
-                                       Width="{Binding ResizeRectSizeCorner}"
-                                       Height="{Binding ResizeRectSizeCorner}"
-                                       VerticalAlignment="Top"
-                                       x:Name="topRight"
-                                       Cursor="SizeNESW"/>
-                            <Rectangle HorizontalAlignment="Left"
-                                       Width="{Binding ResizeRectSizeCorner}"
-                                       VerticalAlignment="Top"
-                                       Height="{Binding ResizeRectSizeCorner}"
-                                       x:Name="topLeft"
-                                       Cursor="SizeNWSE"/>
+                            <!--#endregion-->
+                            <Border BorderThickness="1"
+                            CornerRadius="{Binding RoundEdgeRadius}"
+                            BorderBrush="{Binding TopBarColor}">
+                            </Border>
                         </Grid>
-                        <!--#endregion-->
-                    </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

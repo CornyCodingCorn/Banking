@@ -3,4 +3,5 @@
                     xmlns:local="clr-namespace:CornUI.Utility">
 
     <local:ThicknessConverter x:Key="ThicknessConverter"/>
+    <local:MaximizePaddingConverter x:Key="MaximizePaddingConverter"/>
 </ResourceDictionary>

@@ -24,28 +24,6 @@ namespace CornUI.Controls
     public partial class Cwnd : Window, INotifyPropertyChanged
     {
         #region Property
-        public bool AllowResize
-        {
-            get { return allowResize; }
-            set 
-            { 
-                if (allowResize == !value)
-                {
-                    allowResize = value;
-
-                    if (allowResize)
-                    {
-                        EnableResize();
-                    }
-                    else
-                    {
-                        DisableResize();
-                    }
-
-                    RaisePropertyChanged("AllowResize");
-                }
-            }
-        }
         public double BorderWidth
         {
             get 
@@ -164,17 +142,43 @@ namespace CornUI.Controls
 
                     if (state == WindowState.Maximized)
                     {
-                        DisableResize();
+                        GetCurrentScreen();
+                        Height = MaxHeight;
                     }
                     else
                     {
-                        EnableResize();
+                        MaxHeight = SystemParameters.VirtualScreenHeight;
                     }
                 }
+                RaisePropertyChanged("MaximizePadding");
             }
         }
-
+        public double MaximizePadding
+        {
+            get 
+            {
+                if (state != WindowState.Maximized)
+                {
+                    return 0;
+                }
+                return maximizePadding; 
+            }
+            set { }
+        }
+        public Utility.Screen CurrentScreen
+        {
+            get { return currentScreen; }
+            set
+            {
+                currentScreen = value;
+                MaxHeight = value.height;
+            }
+        }
         #endregion
+        protected bool used = false;
+
+        protected Utility.Screen currentScreen;
+        protected double maximizePadding = 6;
         protected bool restoreIfMove = false;
         protected WindowState state = WindowState.Normal;
         protected string title = "yeah";
@@ -201,95 +205,23 @@ namespace CornUI.Controls
 
                 Button close = GetTemplateChild("closeButton") as Button;
                 close.Click += CloseClick;
-
-                //Rectangle topBar1 = GetTemplateChild("topBar1") as Rectangle;
-                //topBar1.MouseDown += StartWindowDrag;
-                //topBar1.MouseDown += WindowDrag;
-                //topBar1.MouseDown += EndWindowDrag;
-                //
-                //Rectangle topBar2 = GetTemplateChild("topBar2") as Rectangle;
-                //topBar2.MouseDown += StartWindowDrag;
-                //topBar2.MouseDown += WindowDrag;
-                //topBar2.MouseDown += EndWindowDrag;
-                //
-                //Grid topBarTitle = GetTemplateChild("topBarTitle") as Grid;
-                //topBarTitle.MouseDown += StartWindowDrag;
-                //topBarTitle.MouseDown += WindowDrag;
-                //topBarTitle.MouseDown += EndWindowDrag;
-
-                AssignMouseDownEvent();
             }
             catch (NullReferenceException)
             {
                 MessageBox.Show("One of the system buttons is null");
             }
 
+            used = true;
             base.OnApplyTemplate();
         }
-        protected void StartWindowDrag(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount == 2)
-            {
-                if ((ResizeMode == ResizeMode.CanResize) ||
-                    (ResizeMode == ResizeMode.CanResizeWithGrip))
-                {
-                    SwitchState();
-                }
-            }
-            else
-            {
-                if (WindowState == WindowState.Maximized)
-                {
-                    restoreIfMove = true;
-                }
 
-                DragMove();
-            }
-        }
-        protected void WindowDrag(object sender, MouseButtonEventArgs e)
+        protected void GetCurrentScreen()
         {
-            if (restoreIfMove)
-            {
-                restoreIfMove = false;
-                var mouseX = e.GetPosition(this).X;
-                var width = RestoreBounds.Width;
-                var x = mouseX - width / 2;
+            if (!used)
+                return;
 
-                if (x < 0)
-                {
-                    x = 0;
-                }
-                else
-                if (x + width > System.Windows.SystemParameters.WorkArea.Width)
-                {
-                    x = System.Windows.SystemParameters.WorkArea.Width - width;
-                }
-
-                WindowState = WindowState.Normal;
-                Left = x;
-                Top = 0;
-                DragMove();
-            }
-        }
-        protected void EndWindowDrag(object sender, MouseButtonEventArgs e)
-        {
-            restoreIfMove = false;
-        }
-        private void SwitchState()
-        {
-            switch (WindowState)
-            {
-                case WindowState.Normal:
-                    {
-                        WindowState = WindowState.Maximized;
-                        break;
-                    }
-                case WindowState.Maximized:
-                    {
-                        WindowState = WindowState.Normal;
-                        break;
-                    }
-            }
+            Point pos = this.PointToScreen(new Point(0, 0));
+            CurrentScreen = Utility.ScreenHelper.GetScreen(pos.X, pos.Y, Width, Height);
         }
         #region Click event
         protected void MinimizeClick(object sender, RoutedEventArgs e)
@@ -310,125 +242,6 @@ namespace CornUI.Controls
         protected void CloseClick(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-        #endregion
-
-        #region Resize
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        private static extern IntPtr SendMessage(IntPtr hWnd, UInt32 msg, IntPtr wParam, IntPtr lParam);
-
-        protected void AssignMouseDownEvent()
-        {
-            Rectangle rect = GetTemplateChild("top") as Rectangle;
-            rect.MouseDown += ResizeTop;
-            resizeRects.Add(rect);
-
-            rect = GetTemplateChild("bottom") as Rectangle;
-            rect.MouseDown += ResizeBottom;
-            resizeRects.Add(rect);
-
-            rect = GetTemplateChild("left") as Rectangle;
-            rect.MouseDown += ResizeLeft;
-            resizeRects.Add(rect);
-
-            rect = GetTemplateChild("right") as Rectangle;
-            rect.MouseDown += ResizeRight;
-            resizeRects.Add(rect);
-
-            rect = GetTemplateChild("topLeft") as Rectangle;
-            rect.MouseDown += ResizeTopLeft;
-            resizeRects.Add(rect);
-
-            rect = GetTemplateChild("topRight") as Rectangle;
-            rect.MouseDown += ResizeTopRight;
-            resizeRects.Add(rect);
-
-            rect = GetTemplateChild("bottomLeft") as Rectangle;
-            rect.MouseDown += ResizeGura;
-            resizeRects.Add(rect);
-
-            rect = GetTemplateChild("bottomRight") as Rectangle;
-            rect.MouseDown += ResizeBottomRight;
-            resizeRects.Add(rect);
-        }
-        protected void DisableResize()
-        {
-            foreach (Rectangle rectangle in resizeRects)
-            {
-                rectangle.IsEnabled = false;
-            }
-        }
-        protected void EnableResize()
-        {
-            if (!AllowResize)
-                return;
-
-            foreach (Rectangle rectangle in resizeRects)
-            {
-                rectangle.IsEnabled = true;
-            }
-        }
-        protected void ResizeTop(object sender, MouseButtonEventArgs e)
-        {
-            ResizeWindow(ResizeDirection.Top);
-        }
-        protected void ResizeBottom(object sender, MouseButtonEventArgs e)
-        {
-            ResizeWindow(ResizeDirection.Bottom);
-        }
-        protected void ResizeLeft(object sender, MouseButtonEventArgs e)
-        {
-            ResizeWindow(ResizeDirection.Left);
-        }
-        protected void ResizeRight(object sender, MouseButtonEventArgs e)
-        {
-            ResizeWindow(ResizeDirection.Right);
-        }
-        protected void ResizeTopLeft(object sender, MouseButtonEventArgs e)
-        {
-            ResizeWindow(ResizeDirection.TopLeft);
-        }
-        protected void ResizeTopRight(object sender, MouseButtonEventArgs e)
-        {
-            ResizeWindow(ResizeDirection.TopRight);
-        }
-        protected void ResizeGura(object sender, MouseButtonEventArgs e)
-        {
-            ResizeWindow(ResizeDirection.Gura);
-        }
-        protected void ResizeBottomRight(object sender, MouseButtonEventArgs e)
-        {
-            ResizeWindow(ResizeDirection.BottomRight);
-        }
-
-        private void ResizeWindow(ResizeDirection direction)
-        {
-            SendMessage(_hwndSource.Handle, 0x112, (IntPtr)(61440 + direction), IntPtr.Zero);
-        }
-
-        private enum ResizeDirection
-        {
-            Left = 1,
-            Right = 2,
-            Top = 3,
-            TopLeft = 4,
-            TopRight = 5,
-            Bottom = 6,
-            Gura = 7,
-            BottomRight = 8,
-        }
-
-        private HwndSource _hwndSource;
-
-        protected override void OnInitialized(EventArgs e)
-        {
-            SourceInitialized += OnSourceInitialized;
-            base.OnInitialized(e);
-        }
-
-        private void OnSourceInitialized(object sender, EventArgs e)
-        {
-            _hwndSource = (HwndSource)PresentationSource.FromVisual(this);
         }
         #endregion
 

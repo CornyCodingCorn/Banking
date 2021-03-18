@@ -1,131 +1,154 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Windows.Media;
 using System.Windows;
 
 namespace CornUI.Controls
 {
-    public class CwndInfo : BaseINCP
+    public class CwndInfo
     {
-        public bool AllowResize
+        public double BorderWidth
         {
-            get { return allowResize; }
-            set { allowResize = value; }
-        }
-        public int MinHeight
-        { 
-            get { return minHeight; }
-            set { minHeight = value; }
-        }
-        public int MaxHeight
-        { 
-            get { return maxHeight; }
-            set { maxHeight = value; }
-        }
-        public int MinWidth
-        { 
-            get { return minWidth; }
-            set { minWidth = value; }
-        }
-        public int MaxWidth
-        {
-            get { return maxWidth; }
-            set { maxWidth = value; }
-        }
-        public int BorderWidth
-        { 
             get { return borderWidth; }
-            set { borderWidth = value; }
+            set 
+            {
+                borderWidth = value;
+                UpdateUI("BorderWidth");
+            }
         }
-        public int BorderRoundEdgeRadius
+        public double BorderRoundEdgeRadius
         {
-            get { return borderWidth + topRoundEdgeRadius; }
+            get { return borderWidth + roundEdgeRadius; }
+            set { }
         }
         public int TopBarHeight
-        { 
+        {
             get { return topBarHeight; }
-            set { topBarHeight = value; }
+            set 
+            { 
+                topBarHeight = value;
+                UpdateUI("TopBarHeight");
+            }
         }
-        public Color TopBarColor
+        public Brush TopBarColor
         {
             get { return topBarColor; }
-            set { topBarColor = value; }
+            set 
+            { 
+                topBarColor = value;
+                UpdateUI("TopBarColor");
+            }
         }
-        public Color BackColor
+        public Brush BackColor
         {
             get { return backColor; }
-            set { backColor = value; }
+            set 
+            { 
+                backColor = value;
+                UpdateUI("BackColor");
+            }
         }
-        public int BottomRoundEdgeRadius
-        { 
-            get { return bottomRoundEdgeRadius; }
-            set { bottomRoundEdgeRadius = value; }
-        }
-        public int TopRoundEdgeRadius
-        { 
-            get { return topRoundEdgeRadius; }
-            set { topRoundEdgeRadius = value; }
-        }
-        public string Title
+        public double RoundEdgeRadius
         {
-            get { return title; }
-            set { title = value; }
+            get { return roundEdgeRadius; }
+            set 
+            {
+                roundEdgeRadius = value;
+                UpdateUI("RoundEdgeRadius");
+            }
         }
-        public FontFamily FontType
-        { 
+        public int ResizeRectSizeCorner
+        {
+            get { return resizeRectSizeCorner; }
+            set
+            {
+                resizeRectSizeCorner = value;
+                UpdateUI("ResizeRectSizeCorner");
+            }
+        }
+        public int ResizeRectSizeMiddle
+        {
+            get { return resizeRectSizeMiddle; }
+            set
+            {
+                resizeRectSizeMiddle = value;
+                UpdateUI("ResizeRectSizeMiddle");
+            }
+        }
+        public FontFamily CwndFontType
+        {
             get { return fontType; }
-            set { fontType = value; }
+            set 
+            { 
+                fontType = value;
+                UpdateUI("CwndFontType");
+            }
         }
-        public FontWeight FontWeight
+        public FontWeight CwndFontWeight
         {
             get { return fontWeight; }
-            set { fontWeight = value; }
+            set 
+            { 
+                fontWeight = value;
+                UpdateUI("CwndFontWeight");
+            }
         }
-        public Color FontColor
+        public Brush CwndFontColor
         {
             get { return fontColor; }
-            set { fontColor = value; }
+            set 
+            { 
+                fontColor = value;
+                UpdateUI("CwndFontColor");
+            }
         }
-        public int FontSize
+        public int CwndFontSize
         {
             get { return fontSize; }
-            set { fontSize = value; }
+            set 
+            { 
+                fontSize = value;
+                UpdateUI("CwndFontSize");
+            }
         }
-        protected string IconPath
-        {
-            get { return iconPath; }
-            set { iconPath = value; }
-        }
-        protected int IconSize 
+        public int IconSize
         {
             get { return iconSize; }
-            set { iconSize = value; }
+            set 
+            { 
+                iconSize = value; 
+            }
         }
 
+        List<Cwnd> windows = new List<Cwnd>();
+
         protected bool allowResize = true;
-        protected int minHeight = 200;
-        protected int minWidth = 200;
-        protected int maxHeight = -1;
-        protected int maxWidth = -1;
+        protected double borderWidth = 10;
 
-        protected int borderWidth = 5;
+        protected int topBarHeight = 30;
+        protected Brush topBarColor = Brushes.Gray;
+        protected Brush backColor = Brushes.White;
+        protected double roundEdgeRadius = 10;
 
-        protected int topBarHeight = 25;
-        protected Color topBarColor = Colors.Gray;
-        protected Color backColor = Colors.White;
-
-        protected int bottomRoundEdgeRadius = 10;
-        protected int topRoundEdgeRadius = 10;
-
-        protected string title = "feneric title";
         protected FontFamily fontType = new FontFamily("Tahoma");
         protected FontWeight fontWeight = FontWeights.Bold;
-        protected Color fontColor = Colors.Black;
+        protected Brush fontColor = Brushes.Black;
         protected int fontSize = 14;
 
-        protected int iconSize = 20;
-        protected string iconPath = "Icon.png";
+        protected int resizeRectSizeCorner = 10;
+        protected int resizeRectSizeMiddle = 5;
+
+        protected int iconSize = 25;
+
+        public void Register(Cwnd cwnd)
+        {
+            windows.Add(cwnd);
+        }
+        protected void UpdateUI(string propertyName)
+        {
+            foreach(Cwnd window in windows)
+            {
+                window.RaisePropertyChanged(propertyName);
+            }
+        }
     }
 }

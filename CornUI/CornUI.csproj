@@ -57,6 +57,10 @@
     </ApplicationDefinition>
     <Compile Include="Controls\CwndInfo.cs" />
     <Compile Include="Controls\BaseINCP.cs" />
+    <Compile Include="Controls\INPCUserControl.cs" />
+    <Compile Include="Controls\RoundedUserControl.xaml.cs">
+      <DependentUpon>RoundedUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utility\ThicknessConverter.cs" />
     <Page Include="Asset\SystemIcon.xaml">
       <SubType>Designer</SubType>
@@ -67,6 +71,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\CwndVisual.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\RoundedUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

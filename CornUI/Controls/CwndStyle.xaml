@@ -12,6 +12,7 @@
                 </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
         </Style.Resources>
+        <Setter Property="WindowChrome.CaptionHeight" Value="35"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Height" Value="19"/>
         <Setter Property="Width" Value="19"/>
@@ -21,7 +22,7 @@
     </Style>
     <!--#endregion-->
     <!--#region Wnd-->
-    <Style TargetType="{x:Type local:Cwnd}"
+    <Style x:Name="window" TargetType="{x:Type local:Cwnd}"
            x:Key="CwndStyle">
         <Style.Resources>
             <ResourceDictionary>
@@ -31,29 +32,34 @@
                 </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
         </Style.Resources>
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CaptionHeight="35" ResizeBorderThickness="10"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="WindowState" Value="{Binding CwndWindowState}"/>
         <Setter Property="WindowStyle" Value="None"/>
         <Setter Property="ResizeMode" Value="NoResize"/>
         <Setter Property="AllowsTransparency" Value="True"/>
-        <Setter Property="MinHeight" Value="{Binding MinHeight, FallbackValue=200}"/>
-        <Setter Property="MaxHeight" Value="{Binding MaxHeight, FallbackValue=-1}"/>
-        <Setter Property="MinWidth" Value="{Binding MinWidth, FallbackValue=200}"/>
-        <Setter Property="MaxWidth" Value="{Binding MaxWidth, FallbackValue=-1}"/>
+        <Setter Property="MinHeight" Value="200"/>
+        <Setter Property="MinWidth" Value="300"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Cwnd}">
                     <Grid>
                         <!--#region WindowContent-->
-                        <Border Margin="{Binding BorderWidth, Converter={StaticResource ThicknessConverter}, FallbackValue=2}"
-                            CornerRadius="{Binding BorderRoundEgdeRadius, FallbackValue=12}">
+                        <Border x:Name="windowBorder" 
+                                Margin="{Binding BorderWidth, Converter={StaticResource ThicknessConverter}, FallbackValue=2}"
+                                CornerRadius="{Binding BorderRoundEdgeRadius, FallbackValue=12}">
                             <Border.Effect>
-                                <DropShadowEffect ShadowDepth="1" BlurRadius="5"/>
+                                <DropShadowEffect ShadowDepth="1" BlurRadius="{Binding BorderWidth}" Opacity="0.5"/>
                             </Border.Effect>
 
                             <Grid>
                                 <Rectangle x:Name="backGround"
                                            Fill="{Binding BackColor, FallbackValue=White}"
-                                           RadiusX="{Binding BottomRoundEdgeRadius, FallbackValue=10}"
-                                           RadiusY="{Binding BottomRoundEdgeRadius, FallbackValue=10}"/>
+                                           RadiusX="{Binding RoundEdgeRadius, FallbackValue=10}"
+                                           RadiusY="{Binding RoundEdgeRadius, FallbackValue=10}"/>
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="{Binding TopBarHeight, FallbackValue=25}"/>
@@ -62,12 +68,12 @@
                                     <Rectangle x:Name="topBar1"
                                                Grid.Row="0"
                                                Fill="{Binding TopBarColor, FallbackValue=LightGray}"
-                                               RadiusX="{Binding TopRoundEdgeRadius, FallbackValue=10}"
-                                               RadiusY="{Binding TopRoundEdgeRadius, FallbackValue=10}"/>
+                                               RadiusX="{Binding RoundEdgeRadius, FallbackValue=10}"
+                                               RadiusY="{Binding RoundEdgeRadius, FallbackValue=10}"/>
                                     <Rectangle x:Name="topBar2"
                                                Grid.Row="0"
                                                VerticalAlignment="Bottom"
-                                               Height="{Binding TopRoundEdgeRadius, FallbackValue=10}"
+                                               Height="{Binding RoundEdgeRadius, FallbackValue=10}"
                                                Fill="{Binding TopBarColor, FallbackValue=LightGray}"/>
                                     <Grid x:Name="topBarTitle"
                                           Grid.Row="0"
@@ -80,11 +86,11 @@
                                         <Border Margin="10, 0, 10,0">
                                             <TextBlock VerticalAlignment="Center"
                                                        HorizontalAlignment="Center"
-                                                       Text="{Binding Title, FallbackValue=GenericTitle}"
-                                                       Foreground="{Binding FontColor, FallbackValue=Black}"
-                                                       FontSize="{Binding FontSize, FallbackValue=14}"
-                                                       FontFamily="{Binding FontType, FallbackValue=Tahoma}"
-                                                       FontWeight="{Binding FontWeight, FallbackValue=Bold}"/>
+                                                       Text="{Binding CwndTitle, FallbackValue=GenericTitle}"
+                                                       Foreground="{Binding CwndFontColor, FallbackValue=Black}"
+                                                       FontSize="{Binding CwndFontSize, FallbackValue=14}"
+                                                       FontFamily="{Binding CwndFontType, FallbackValue=Tahoma}"
+                                                       FontWeight="{Binding CwndFontWeight, FallbackValue=Bold}"/>
                                         </Border>
 
                                         <Image Grid.Column="1" 
@@ -98,6 +104,7 @@
 
                                     <Grid HorizontalAlignment="Right"
                                           VerticalAlignment="Center"
+                                          WindowChrome.IsHitTestVisibleInChrome="True"
                                           Width="82"
                                           Height="19">
                                         <Grid.ColumnDefinitions>
@@ -151,9 +158,14 @@
                                 </Grid>
                             </Grid>
                         </Border>
+                        <Border BorderThickness="1" 
+                                BorderBrush="{Binding TopBarColor, FallbackValue=LightGray}" 
+                                Margin="{Binding BorderWidth, Converter={StaticResource ThicknessConverter}, FallbackValue=2}"
+                                Opacity="0.5"
+                                CornerRadius="{Binding RoundEdgeRadius, FallbackValue=10}"/>
                         <!--#endregion-->
                         <!--#region Resize Grid-->
-                        <Grid x:Name="resizeGrid">
+                        <Grid x:Name="resizeGrid" Margin="{Binding ResizeBorderWidth, Converter={StaticResource ThicknessConverter}, FallbackValue=2}">
                             <Grid.Resources>
                                 <Style TargetType="Rectangle">
                                     <Setter Property="Fill" Value="Transparent"/>
@@ -162,47 +174,47 @@
                             </Grid.Resources>
 
                             <Rectangle VerticalAlignment="Top"
-                                       Height="5"
+                                       Height="{Binding ResizeRectSizeMiddle}"
                                        x:Name="top"
                                        Margin="10,0,10,0"
                                        Cursor="SizeNS"/>
                             <Rectangle x:Name="bottom"
-                                       Height="5"
+                                       Height="{Binding ResizeRectSizeMiddle}"
                                        VerticalAlignment="Bottom"
                                        Margin="10,0,10,0"
                                        Cursor="SizeNS"/>
                             <Rectangle HorizontalAlignment="Left"
                                        Margin="0,5,0,5"
-                                       Width="5"
+                                       Width="{Binding ResizeRectSizeMiddle}"
                                        x:Name="left"
                                        Cursor="SizeWE"/>
                             <Rectangle Margin="0,10,0,10"
-                                       Width="5"
+                                       Width="{Binding ResizeRectSizeMiddle}"
                                        HorizontalAlignment="Right"
                                        x:Name="right"
                                        Cursor="SizeWE"/>
                             <Rectangle HorizontalAlignment="Left"
                                        VerticalAlignment="Bottom"
-                                       Width="10"
-                                       Height="10"
+                                       Width="{Binding ResizeRectSizeCorner}"
+                                       Height="{Binding ResizeRectSizeCorner}"
                                        x:Name="bottomLeft"
                                        Cursor="SizeNESW"/>
                             <Rectangle VerticalAlignment="Bottom"
-                                       Height="10"
-                                       Width="10"
+                                       Height="{Binding ResizeRectSizeCorner}"
+                                       Width="{Binding ResizeRectSizeCorner}"
                                        HorizontalAlignment="Right"
                                        x:Name="bottomRight"
                                        Cursor="SizeNWSE"/>
                             <Rectangle HorizontalAlignment="Right"
-                                       Width="10"
-                                       Height="10"
+                                       Width="{Binding ResizeRectSizeCorner}"
+                                       Height="{Binding ResizeRectSizeCorner}"
                                        VerticalAlignment="Top"
                                        x:Name="topRight"
                                        Cursor="SizeNESW"/>
                             <Rectangle HorizontalAlignment="Left"
-                                       Width="10"
+                                       Width="{Binding ResizeRectSizeCorner}"
                                        VerticalAlignment="Top"
-                                       Height="10"
+                                       Height="{Binding ResizeRectSizeCorner}"
                                        x:Name="topLeft"
                                        Cursor="SizeNWSE"/>
                         </Grid>

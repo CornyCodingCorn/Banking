@@ -8,9 +8,9 @@ namespace CornUI.Utility
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value is int)
+            if (value is double)
             {
-                int margin = (int)value;
+                double margin = (double)value;
                 return new Thickness(margin, margin, margin, margin);
             }
             return new Thickness();

@@ -60,6 +60,11 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="{Binding RoundEdgeRadius, FallbackValue=10}"/>
                                     </Grid.RowDefinitions>
+
+                                    <AdornerDecorator Grid.Row="2">
+                                        <ContentPresenter/>
+                                    </AdornerDecorator>
+                                    
                                     <!--#region TopBar-->
                                     <Rectangle x:Name="topBar1"
                                                Grid.Row="1"
@@ -97,16 +102,6 @@
                                                HorizontalAlignment="Left"
                                                RenderOptions.BitmapScalingMode="HighQuality"/>
                                     </Grid>
-                                    <!--#endregion-->
-                                    <!--#region  BottomBar-->
-                                    <Grid Grid.Row="4">
-                                        <Rectangle Fill="{Binding TopBarColor}"
-                                                   RadiusX="{Binding RoundEdgeRadius}"
-                                                   RadiusY="{Binding RoundEdgeRadius}"
-                                                   VerticalAlignment="Bottom"
-                                                   Height="{Binding TopBarHeight}"/>
-                                    </Grid>
-                                    <!--#endregion-->
                                     <Grid HorizontalAlignment="Right"
                                           VerticalAlignment="Center"
                                           Grid.Row="1"
@@ -157,10 +152,16 @@
                                             </Button.Resources>
                                         </Button>
                                     </Grid>
-
-                                    <AdornerDecorator Grid.Row="2">
-                                        <ContentPresenter/>
-                                    </AdornerDecorator>
+                                    <!--#endregion-->
+                                    <!--#region  BottomBar-->
+                                    <Grid Grid.Row="4">
+                                        <Rectangle Fill="{Binding TopBarColor}"
+                                                   RadiusX="{Binding RoundEdgeRadius}"
+                                                   RadiusY="{Binding RoundEdgeRadius}"
+                                                   VerticalAlignment="Bottom"
+                                                   Height="{Binding TopBarHeight}"/>
+                                    </Grid>
+                                    <!--#endregion-->
                                 </Grid>
                             </Grid>
                             <!--#endregion-->

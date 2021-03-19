@@ -56,6 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\BaseINPC.cs" />
+    <Compile Include="View\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainWin.xaml.cs">
       <DependentUpon>MainWin.xaml</DependentUpon>
     </Compile>
@@ -63,6 +66,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

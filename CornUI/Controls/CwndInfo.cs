@@ -56,24 +56,6 @@ namespace CornUI.Controls
                 UpdateUI("RoundEdgeRadius");
             }
         }
-        public int ResizeRectSizeCorner
-        {
-            get { return resizeRectSizeCorner; }
-            set
-            {
-                resizeRectSizeCorner = value;
-                UpdateUI("ResizeRectSizeCorner");
-            }
-        }
-        public int ResizeRectSizeMiddle
-        {
-            get { return resizeRectSizeMiddle; }
-            set
-            {
-                resizeRectSizeMiddle = value;
-                UpdateUI("ResizeRectSizeMiddle");
-            }
-        }
         public FontFamily CwndFontType
         {
             get { return fontType; }

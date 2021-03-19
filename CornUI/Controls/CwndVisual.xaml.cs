@@ -70,21 +70,6 @@ namespace CornUI.Controls
             }
             set { info.RoundEdgeRadius = value; }
         }
-        public int ResizeRectSizeCorner
-        {
-            get { return info.ResizeRectSizeCorner; }
-            set { info.ResizeRectSizeCorner = value; }
-        }
-        public int ResizeRectSizeMiddle
-        {
-            get { return info.ResizeRectSizeMiddle; }
-            set { info.ResizeRectSizeMiddle = value; }
-        }
-        public double ResizeBorderWidth
-        {
-            get { return info.BorderWidth - info.ResizeRectSizeMiddle; }
-            set { }
-        }
         public string CwndTitle
         {
             get { return title; }

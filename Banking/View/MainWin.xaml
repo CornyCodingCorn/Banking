@@ -11,17 +11,22 @@
           Style="{DynamicResource CwndStyle}">
 
     <wnd:Cwnd.Resources>
-        <System:Double x:Key="DropShadowRadius">2</System:Double>
+        <System:Double x:Key="DropShadowRadius">5</System:Double>
+        <System:Double x:Key="DropShadowDept">1</System:Double>
+        <System:Double x:Key="DropShadowOpacity">0.5</System:Double>
     </wnd:Cwnd.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Grid.Column="0" Fill="{Binding BackGroundColor}">
+        <Rectangle Grid.Column="0" Fill="{Binding BackColor}">
             <Rectangle.Effect>
-                <DropShadowEffect BlurRadius="{StaticResource DropShadowRadius}"/>
+                <DropShadowEffect BlurRadius="{StaticResource DropShadowRadius}"
+                                  ShadowDepth="{StaticResource DropShadowDept}"
+                                  Opacity="{StaticResource DropShadowOpacity}"
+                                  Direction="0"/>
             </Rectangle.Effect>
         </Rectangle>
     </Grid>
-</wnd:Cwnd>]
+</wnd:Cwnd>

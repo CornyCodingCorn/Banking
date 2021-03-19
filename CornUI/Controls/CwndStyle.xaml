@@ -49,10 +49,15 @@
                         <Grid>
                             <!--#region WindowContent-->
                             <Grid>
-                                <Rectangle x:Name="backGround"
-                                           Fill="{Binding BackColor, FallbackValue=White}"
-                                           RadiusX="{Binding RoundEdgeRadius, FallbackValue=10}"
-                                           RadiusY="{Binding RoundEdgeRadius, FallbackValue=10}"/>
+                                <Border BorderThickness="1"
+                                        CornerRadius="{Binding RoundEdgeRadius}"
+                                        BorderBrush="{Binding TopBarColor}">
+                                    <Rectangle x:Name="backGround"
+                                               Fill="{Binding BackColor, FallbackValue=White}"
+                                               RadiusX="{Binding RoundEdgeRadius, FallbackValue=10}"
+                                               RadiusY="{Binding RoundEdgeRadius, FallbackValue=10}"/>
+                                </Border>
+
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="0"/>
@@ -61,7 +66,7 @@
                                         <RowDefinition Height="{Binding RoundEdgeRadius, FallbackValue=10}"/>
                                     </Grid.RowDefinitions>
 
-                                    <AdornerDecorator Grid.Row="2">
+                                    <AdornerDecorator Grid.Row="2" Margin="1, 0, 1, 0">
                                         <ContentPresenter/>
                                     </AdornerDecorator>
                                     
@@ -164,11 +169,12 @@
                                     <!--#endregion-->
                                 </Grid>
                             </Grid>
-                            <!--#endregion-->
+                            
                             <Border BorderThickness="1"
-                            CornerRadius="{Binding RoundEdgeRadius}"
-                            BorderBrush="{Binding TopBarColor}">
+                                        CornerRadius="{Binding RoundEdgeRadius}"
+                                        BorderBrush="{Binding TopBarColor}">
                             </Border>
+                            <!--#endregion-->
                         </Grid>
                     </Border>
                 </ControlTemplate>

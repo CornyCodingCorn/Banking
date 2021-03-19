@@ -15,9 +15,9 @@
         <System:Double x:Key="DropShadowDept">1</System:Double>
         <System:Double x:Key="DropShadowOpacity">0.5</System:Double>
     </wnd:Cwnd.Resources>
-    <Grid>
+    <Grid x:Name="Content">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Column="0" Fill="{Binding BackColor}">

@@ -22,6 +22,7 @@ namespace Banking.View
         public MainWin(CornUI.Controls.CwndInfo info) : base(info)
         {
             InitializeComponent();
+            Grid content = GetTemplateChild("Content") as Grid;
         }
     }
 }

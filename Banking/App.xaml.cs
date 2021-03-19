@@ -21,7 +21,7 @@ namespace Banking
             View.MainWin wnd2 = new View.MainWin(info);
             wnd.Show();
             wnd2.Show();
-            info.BackColor = Brushes.Black;
+            info.BackColor = Brushes.Cyan;
         }
     }
 }

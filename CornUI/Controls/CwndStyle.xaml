@@ -58,7 +58,9 @@
                                         <RowDefinition Height="0"/>
                                         <RowDefinition Height="{Binding TopBarHeight, FallbackValue=25}"/>
                                         <RowDefinition Height="*"/>
+                                        <RowDefinition Height="{Binding RoundEdgeRadius, FallbackValue=10}"/>
                                     </Grid.RowDefinitions>
+                                    <!--#region TopBar-->
                                     <Rectangle x:Name="topBar1"
                                                Grid.Row="1"
                                                Fill="{Binding TopBarColor, FallbackValue=LightGray}"
@@ -95,13 +97,22 @@
                                                HorizontalAlignment="Left"
                                                RenderOptions.BitmapScalingMode="HighQuality"/>
                                     </Grid>
-
+                                    <!--#endregion-->
+                                    <!--#region  BottomBar-->
+                                    <Grid Grid.Row="4">
+                                        <Rectangle Fill="{Binding TopBarColor}"
+                                                   RadiusX="{Binding RoundEdgeRadius}"
+                                                   RadiusY="{Binding RoundEdgeRadius}"
+                                                   VerticalAlignment="Bottom"
+                                                   Height="{Binding TopBarHeight}"/>
+                                    </Grid>
+                                    <!--#endregion-->
                                     <Grid HorizontalAlignment="Right"
-                                      VerticalAlignment="Center"
-                                      Grid.Row="1"
-                                      WindowChrome.IsHitTestVisibleInChrome="True"
-                                      Width="82"
-                                      Height="19">
+                                          VerticalAlignment="Center"
+                                          Grid.Row="1"
+                                          WindowChrome.IsHitTestVisibleInChrome="True"
+                                          Width="82"
+                                          Height="19">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>

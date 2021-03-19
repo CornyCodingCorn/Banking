@@ -127,7 +127,7 @@ namespace CornUI.Controls
         protected int topBarHeight = 30;
         protected Brush topBarColor = Brushes.Gray;
         protected Brush backColor = Brushes.White;
-        protected double roundEdgeRadius = 10;
+        protected double roundEdgeRadius = 7;
 
         protected FontFamily fontType = new FontFamily("Tahoma");
         protected FontWeight fontWeight = FontWeights.Bold;

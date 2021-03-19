@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Theme.cs" />
     <Compile Include="ViewModel\BaseINPC.cs" />
     <Compile Include="View\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
@@ -103,7 +104,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Asset\" />
-    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CornUI\CornUI.csproj">

@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:CornUI.Controls">
+                    xmlns:local="clr-namespace:CornUI.Controls"
+                    xmlns:util="clr-namespace:CornUI.Utility">
 
     <!--#region SysButton-->
     <Style TargetType="{x:Type Button}"
@@ -20,8 +21,7 @@
         <Style.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="..\/Asset/SystemIcon.xaml"/>
-                    <ResourceDictionary Source="..\/Utility/Conversion.xaml"/>
+                    <ResourceDictionary Source="ControlResources.xaml"/>
                 </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
         </Style.Resources>
@@ -41,7 +41,7 @@
                     <Border Padding="{Binding MaximizePadding, Converter={StaticResource MaximizePaddingConverter}, FallbackValue=10}">
                         <Grid>
                             <!--#region WindowContent-->
-                            <Grid>
+                            <Grid> 
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="0"/>

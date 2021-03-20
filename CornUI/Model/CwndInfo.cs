@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Media;
 using System.Windows;
+using CornUI.Controls;
 
-namespace CornUI.Controls
+namespace CornUI.Model
 {
     public class CwndInfo
     {
@@ -112,7 +113,7 @@ namespace CornUI.Controls
         protected double roundEdgeRadius = 7;
 
         protected FontFamily fontType = new FontFamily("Tahoma");
-        protected FontWeight fontWeight = FontWeights.Bold;
+        protected FontWeight fontWeight = FontWeights.SemiBold;
         protected Brush fontColor = Brushes.Black;
         protected int fontSize = 14;
 

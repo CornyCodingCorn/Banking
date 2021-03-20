@@ -5,13 +5,6 @@
     <!--#region SysButton-->
     <Style TargetType="{x:Type Button}"
            x:Key="SysButton">
-        <Style.Resources>
-            <ResourceDictionary>
-                <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="..\/Asset/SystemIcon.xaml"/>
-                </ResourceDictionary.MergedDictionaries>
-            </ResourceDictionary>
-        </Style.Resources>
         <Setter Property="WindowChrome.CaptionHeight" Value="35"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Height" Value="19"/>
@@ -49,10 +42,6 @@
                         <Grid>
                             <!--#region WindowContent-->
                             <Grid>
-                                <Rectangle x:Name="backGround"
-                                           Fill="{Binding BackColor, FallbackValue=White}"
-                                           RadiusX="{Binding RoundEdgeRadius, FallbackValue=10}"
-                                           RadiusY="{Binding RoundEdgeRadius, FallbackValue=10}"/>
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="0"/>
@@ -60,8 +49,21 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="{Binding RoundEdgeRadius, FallbackValue=10}"/>
                                     </Grid.RowDefinitions>
-
-                                    <AdornerDecorator Grid.Row="2">
+                                    
+                                    <Border BorderThickness="1"
+                                            Width="{Binding Width}"
+                                            Height="{Binding Height}"
+                                            VerticalAlignment="Center"
+                                            CornerRadius="{Binding RoundEdgeRadius}"
+                                            BorderBrush="{Binding TopBarColor}"
+                                            Grid.Row="2">
+                                        <Rectangle x:Name="backGround"
+                                                   Fill="{Binding BackColor, FallbackValue=White}"
+                                                   RadiusX="{Binding RoundEdgeRadius, FallbackValue=10}"
+                                                   RadiusY="{Binding RoundEdgeRadius, FallbackValue=10}"/>
+                                    </Border>
+                                    
+                                    <AdornerDecorator Grid.Row="2" Margin="1, 0, 1, 0">
                                         <ContentPresenter/>
                                     </AdornerDecorator>
                                     
@@ -164,11 +166,12 @@
                                     <!--#endregion-->
                                 </Grid>
                             </Grid>
-                            <!--#endregion-->
+                            
                             <Border BorderThickness="1"
-                            CornerRadius="{Binding RoundEdgeRadius}"
-                            BorderBrush="{Binding TopBarColor}">
+                                        CornerRadius="{Binding RoundEdgeRadius}"
+                                        BorderBrush="{Binding TopBarColor}">
                             </Border>
+                            <!--#endregion-->
                         </Grid>
                     </Border>
                 </ControlTemplate>

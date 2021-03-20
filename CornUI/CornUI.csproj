@@ -65,9 +65,6 @@
     <Compile Include="Model\CwndInfo.cs" />
     <Compile Include="Controls\BaseINCP.cs" />
     <Compile Include="Controls\INPCUserControl.cs" />
-    <Compile Include="Controls\RoundedUserControl.xaml.cs">
-      <DependentUpon>RoundedUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model\ThemeFormat.cs" />
     <Compile Include="Utility\ScreenHelper.cs" />
     <Compile Include="Utility\ThicknessConverter.cs" />
@@ -75,15 +72,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\CControlStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\CwndStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\RoundedUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -134,6 +123,10 @@
     <Resource Include="Asset\SystemIcon\Exit.png" />
     <Resource Include="Asset\SystemIcon\Maximize.png" />
     <Resource Include="Asset\SystemIcon\Minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\Normal\" />
+    <Folder Include="Controls\Themed\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

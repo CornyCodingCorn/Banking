@@ -5,13 +5,6 @@
     <!--#region SysButton-->
     <Style TargetType="{x:Type Button}"
            x:Key="SysButton">
-        <Style.Resources>
-            <ResourceDictionary>
-                <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="..\/Asset/SystemIcon.xaml"/>
-                </ResourceDictionary.MergedDictionaries>
-            </ResourceDictionary>
-        </Style.Resources>
         <Setter Property="WindowChrome.CaptionHeight" Value="35"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Height" Value="19"/>

@@ -15,8 +15,6 @@ namespace CornUI
     {
         protected void Start(object sender, StartupEventArgs e)
         {
-            MainWindow window = new MainWindow(new Controls.CwndInfo());
-            window.Show();
         }
     }
 }

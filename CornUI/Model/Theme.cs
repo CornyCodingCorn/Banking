@@ -5,24 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace Banking.Model
+namespace CornUI.Model
 {
     //Singleton
     public class Theme : CornUI.Controls.BaseINCP
     {
         static Theme theme;
 
-        private Theme(CornUI.Controls.CwndInfo info)
+        private Theme(CwndInfo info)
         {
             this.info = info;
             LightMode();
         }
 
-        public static Theme GetInstance(CornUI.Controls.CwndInfo info)
+        public static Theme GetInstance()
         {
             if (theme is null)
             {
-                theme = new Theme(info);
+                theme = new Theme(new CwndInfo());
                 return theme;
             }
             else
@@ -31,7 +31,7 @@ namespace Banking.Model
             }
         }
 
-        protected Brush TextBoxBackGround
+        public Brush TextBoxBackGround
         {
             get { return textBoxBackGround; }
             set
@@ -40,7 +40,7 @@ namespace Banking.Model
                 RaisePropertyChanged("TextBoxBackGround");
             }
         }
-        protected Brush BackGround
+        public Brush BackGround
         {
             get { return backGround; }
             set
@@ -50,7 +50,7 @@ namespace Banking.Model
                 info.BackColor = value;
             }
         }
-        protected Brush MenuBar
+        public Brush MenuBar
         {
             get { return menuBar; }
             set
@@ -60,7 +60,7 @@ namespace Banking.Model
                 info.TopBarColor = value;
             }
         }
-        protected Brush ButtonBackGround
+        public Brush ButtonBackGround
         {
             get { return buttonBackGround; }
             set
@@ -69,7 +69,7 @@ namespace Banking.Model
                 RaisePropertyChanged("ButtonBackGround");
             }
         }
-        protected Brush TextAndIcon
+        public Brush TextAndIcon
         {
             get { return textAndIcon; }
             set
@@ -78,7 +78,7 @@ namespace Banking.Model
                 RaisePropertyChanged("TextAndIcon");
             }
         }
-        protected Brush ImportantTextAndIcon
+        public Brush ImportantTextAndIcon
         {
             get { return importantTextAndIcon; }
             set
@@ -88,7 +88,7 @@ namespace Banking.Model
                 info.CwndFontColor = value;
             }
         }
-        protected Brush FocusedControl
+        public Brush FocusedControl
         {
             get { return focusedControl; }
             set
@@ -97,7 +97,7 @@ namespace Banking.Model
                 RaisePropertyChanged("FocusedControl");
             }
         }
-        protected Brush HoverControl
+        public Brush HoverControl
         {
             get { return hoverControl; }
             set
@@ -106,7 +106,7 @@ namespace Banking.Model
                 RaisePropertyChanged("HoverControl");
             }
         }
-        protected double ShadowOpacity
+        public double ShadowOpacity
         {
             get { return shadowOpacity; }
             set
@@ -114,6 +114,10 @@ namespace Banking.Model
                 shadowOpacity = value;
                 RaisePropertyChanged("ShadowOpacity");
             }
+        }
+        public CwndInfo WindowInfo
+        {
+            get { return info; }
         }
 
         public void DarkMode()
@@ -143,7 +147,7 @@ namespace Banking.Model
             ShadowOpacity = 0.75f;
         }
 
-        protected CornUI.Controls.CwndInfo info;
+        protected CwndInfo info;
         protected Brush textBoxBackGround;
         protected Brush backGround;
         protected Brush menuBar;

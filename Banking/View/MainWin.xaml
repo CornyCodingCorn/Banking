@@ -1,32 +1,13 @@
-﻿<wnd:Cwnd x:Class="Banking.View.MainWin"
-          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-          xmlns:local="clr-namespace:Banking.View"
-          xmlns:wnd="clr-namespace:CornUI.Controls;assembly=CornUI"
-          xmlns:System="clr-namespace:System;assembly=mscorlib"
-          mc:Ignorable="d"
-          Title="MainWin" Height="450" Width="800"
-          Style="{DynamicResource CwndStyle}">
-
-    <wnd:Cwnd.Resources>
-        <System:Double x:Key="DropShadowRadius">5</System:Double>
-        <System:Double x:Key="DropShadowDept">1</System:Double>
-        <System:Double x:Key="DropShadowOpacity">0.5</System:Double>
-    </wnd:Cwnd.Resources>
-    <Grid x:Name="Content">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Rectangle Grid.Column="0" Fill="{Binding BackColor}">
-            <Rectangle.Effect>
-                <DropShadowEffect BlurRadius="{StaticResource DropShadowRadius}"
-                                  ShadowDepth="{StaticResource DropShadowDept}"
-                                  Opacity="{StaticResource DropShadowOpacity}"
-                                  Direction="0"/>
-            </Rectangle.Effect>
-        </Rectangle>
-    </Grid>
-</wnd:Cwnd>
+﻿<wnd:ThemedCwnd x:Class="Banking.View.MainWin"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:local="clr-namespace:Banking.View"
+                xmlns:wnd="clr-namespace:CornUI.Controls;assembly=CornUI"
+                xmlns:System="clr-namespace:System;assembly=mscorlib"
+                mc:Ignorable="d"
+                Title="MainWin" Height="450" Width="800"
+                Style="{DynamicResource CwndStyle}">
+    
+</wnd:ThemedCwnd>

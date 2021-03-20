@@ -17,12 +17,11 @@ namespace Banking.View
     /// <summary>
     /// Interaction logic for MainWin.xaml
     /// </summary>
-    public partial class MainWin : CornUI.Controls.Cwnd
+    public partial class MainWin : CornUI.Controls.ThemedCwnd
     {
-        public MainWin(CornUI.Controls.CwndInfo info) : base(info)
+        public MainWin()
         {
             InitializeComponent();
-            Grid content = GetTemplateChild("Content") as Grid;
         }
     }
 }

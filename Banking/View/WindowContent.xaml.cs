@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Banking.View
 {
     /// <summary>
-    /// Interaction logic for MainMenu.xaml
+    /// Interaction logic for WindowContent.xaml
     /// </summary>
-    public partial class MainMenu : UserControl
+    public partial class WindowContent : UserControl
     {
-        public MainMenu()
+        public WindowContent()
         {
             InitializeComponent();
         }

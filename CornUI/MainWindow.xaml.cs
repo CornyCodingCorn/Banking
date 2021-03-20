@@ -18,9 +18,9 @@ namespace CornUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Controls.Cwnd
+    public partial class MainWindow : Controls.ThemedCwnd 
     {
-        public MainWindow(Controls.CwndInfo info) : base(info)
+        public MainWindow()
         {
             InitializeComponent();
         }

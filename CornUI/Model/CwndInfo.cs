@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Media;
 using System.Windows;
+using CornUI.Controls;
 
-namespace CornUI.Controls
+namespace CornUI.Model
 {
     public class CwndInfo
     {

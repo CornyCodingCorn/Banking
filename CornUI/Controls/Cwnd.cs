@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using System.ComponentModel;
+using CornUI.Model;
 
 namespace CornUI.Controls
 {
@@ -26,7 +27,7 @@ namespace CornUI.Controls
         #region Property
         public double BorderWidth
         {
-            get 
+            get
             {
                 if (state == WindowState.Maximized)
                 {
@@ -59,22 +60,22 @@ namespace CornUI.Controls
         }
         public double RoundEdgeRadius
         {
-            get 
-            { 
+            get
+            {
                 if (state == WindowState.Maximized)
                 {
                     return 0;
                 }
 
-                return info.RoundEdgeRadius; 
+                return info.RoundEdgeRadius;
             }
             set { info.RoundEdgeRadius = value; }
         }
         public string CwndTitle
         {
             get { return title; }
-            set 
-            { 
+            set
+            {
                 title = value;
                 RaisePropertyChanged("CwndTitle");
             }
@@ -102,8 +103,8 @@ namespace CornUI.Controls
         public string IconPath
         {
             get { return iconPath; }
-            set 
-            { 
+            set
+            {
                 iconPath = value;
                 RaisePropertyChanged("IconPath");
             }
@@ -117,8 +118,8 @@ namespace CornUI.Controls
         public WindowState CwndWindowState
         {
             get { return state; }
-            set 
-            { 
+            set
+            {
                 state = value;
                 if (state != WindowState.Minimized)
                 {
@@ -142,13 +143,13 @@ namespace CornUI.Controls
         }
         public double MaximizePadding
         {
-            get 
+            get
             {
                 if (state != WindowState.Maximized)
                 {
                     return 0;
                 }
-                return maximizePadding; 
+                return maximizePadding;
             }
             set { }
         }
@@ -175,12 +176,18 @@ namespace CornUI.Controls
         protected CwndInfo info;
         protected List<Rectangle> resizeRects = new List<Rectangle>();
 
+        #region Constructor
         public Cwnd(CwndInfo info)
+        {
+            Register(info);
+        }
+        protected void Register(CwndInfo info)
         {
             info.Register(this);
             this.info = info;
             this.DataContext = this;
         }
+        #endregion
         public override void OnApplyTemplate()
         {
             try

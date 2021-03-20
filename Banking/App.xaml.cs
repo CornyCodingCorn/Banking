@@ -16,12 +16,8 @@ namespace Banking
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var info = new CornUI.Controls.CwndInfo();
-            var themeKey = Model.Theme.GetInstance(info);
-            View.MainWin wnd = new View.MainWin(info);
-            View.MainWin wnd2 = new View.MainWin(info);
-            wnd.Show();
-            wnd2.Show();
+            View.MainWin window = new View.MainWin();
+            window.Show();
         }
     }
 }

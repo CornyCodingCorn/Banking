@@ -1,22 +1,25 @@
-﻿<Button x:Class="CornUI.Controls.Normal.CButton"
+﻿<UserControl x:Class="CornUI.Controls.Normal.CButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CornUI.Controls.Normal"
              mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="100">
-    <Button.Resources>
+             d:DesignHeight="30" d:DesignWidth="100"
+             Background="White"
+             BorderBrush="Gray">
+    <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="Border">
-                <Setter Property="CornerRadius" Value="{Binding CornerRadius, FallbackValue=10}"/>
+                <Setter Property="CornerRadius" Value="10"/>
             </Style>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../ControlResources.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </Button.Resources>
-    <Button.Effect>
-        <DropShadowEffect Color="{Binding BorderBrush, Converter={StaticResource BrushAndColorConvertor}}"/>
-    </Button.Effect>
-</Button>
+    </UserControl.Resources>
+    <Grid>
+        <Border BorderThickness="2" BorderBrush="Gray">
+            <Rectangle Fill="AliceBlue">
+                
+            </Rectangle>
+        </Border>
+    </Grid>
+</UserControl>

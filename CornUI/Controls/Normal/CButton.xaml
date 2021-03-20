@@ -1,25 +1,14 @@
-﻿<UserControl x:Class="CornUI.Controls.Normal.CButton"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CornUI.Controls.Normal"
-             mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="100"
-             Background="White"
-             BorderBrush="Gray">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Border">
-                <Setter Property="CornerRadius" Value="10"/>
-            </Style>
-        </ResourceDictionary>
-    </UserControl.Resources>
+﻿<local:CornControl x:Class="CornUI.Controls.Normal.CButton"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                   xmlns:local="clr-namespace:CornUI.Controls.Normal"
+                   mc:Ignorable="d" 
+                   Focusable="True"
+                   IsTabStop="True"
+                   d:DesignHeight="20" d:DesignWidth="50">
     <Grid>
-        <Border BorderThickness="2" BorderBrush="Gray">
-            <Rectangle Fill="AliceBlue">
-                
-            </Rectangle>
-        </Border>
+            
     </Grid>
-</UserControl>
+</local:CornControl>

@@ -7,5 +7,5 @@
              xmlns:CornUI="clr-namespace:CornUI.Controls.Normal;assembly=CornUI"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-
+    <CornUI:CButton Width="100" Height="50"/>
 </UserControl>

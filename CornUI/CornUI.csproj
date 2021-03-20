@@ -68,7 +68,6 @@
     <Compile Include="Model\Theme.cs" />
     <Compile Include="Model\CwndInfo.cs" />
     <Compile Include="Controls\BaseINCP.cs" />
-    <Compile Include="Controls\INPCUserControl.cs" />
     <Compile Include="Model\ThemeFormat.cs" />
     <Compile Include="Utility\BrushAndColorConverter.cs" />
     <Compile Include="Utility\ScreenHelper.cs" />
@@ -82,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Normal\CButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Normal\CButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

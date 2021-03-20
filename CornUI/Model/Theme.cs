@@ -115,6 +115,16 @@ namespace CornUI.Model
                 RaisePropertyChanged("ShadowOpacity");
             }
         }
+        public FontFamily FontType
+        {
+            get { return fontType; }
+            set
+            {
+                fontType = value;
+                RaisePropertyChanged("FontType");
+                info.CwndFontType = value;
+            }
+        }
         public CwndInfo WindowInfo
         {
             get { return info; }
@@ -131,7 +141,7 @@ namespace CornUI.Model
             FocusedControl = new SolidColorBrush(Color.FromArgb(255, 62, 166, 255));
             HoverControl = new SolidColorBrush(Color.FromArgb(255, 98, 138, 173));
             ShadowOpacity = 0.75f;
-
+            FontType = new FontFamily("Segoe UI");
         }
 
         public void LightMode()
@@ -145,6 +155,21 @@ namespace CornUI.Model
             FocusedControl = new SolidColorBrush(Color.FromArgb(255, 62, 166, 255));
             HoverControl = new SolidColorBrush(Color.FromArgb(255, 98, 138, 173));
             ShadowOpacity = 0.75f;
+            FontType = new FontFamily("Segoe UI");
+        }
+
+        public void ApplyFormat(ThemeFormat format)
+        {
+            TextBoxBackGround = format.textBoxBackGround;
+            BackGround = format.backGround;
+            MenuBar = format.menuBar;
+            ButtonBackGround = format.buttonBackGround;
+            TextAndIcon = format.textAndIcon;
+            ImportantTextAndIcon = format.importantTextAndIcon;
+            FocusedControl = format.focusedControl;
+            HoverControl = format.hoverControl;
+            ShadowOpacity = format.shadowOpacity;
+            fontType = format.fontType;
         }
 
         protected CwndInfo info;
@@ -157,5 +182,6 @@ namespace CornUI.Model
         protected Brush focusedControl;
         protected Brush hoverControl;
         protected double shadowOpacity;
+        protected FontFamily fontType;
     }
 }

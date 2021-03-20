@@ -1,13 +1,9 @@
-﻿<local:INPCUserControl x:Class="CornUI.Controls.RoundedUserControl"
+﻿<TextBox x:Class="CornUI.Controls.RoundedUserControl"
                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                        xmlns:local="clr-namespace:CornUI.Controls"
                        mc:Ignorable="d" 
-                       d:DesignHeight="25" d:DesignWidth="100">
-    <Grid>
-        <TextBox HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="100"/>
-
-    </Grid>
-</local:INPCUserControl>
+                       d:DesignHeight="23.5" d:DesignWidth="82.5" FontFamily="Linux Biolinum G">
+</TextBox>

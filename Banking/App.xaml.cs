@@ -17,7 +17,10 @@ namespace Banking
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             View.MainWin window = new View.MainWin();
+            View.MainWin window2 = new View.MainWin();
             window.Show();
+            window.CwndTitle = "Nhà Bank";
+            window2.Show();
         }
     }
 }

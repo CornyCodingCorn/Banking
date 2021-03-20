@@ -68,9 +68,14 @@
     <Compile Include="Controls\RoundedUserControl.xaml.cs">
       <DependentUpon>RoundedUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ThemeFormat.cs" />
     <Compile Include="Utility\ScreenHelper.cs" />
     <Compile Include="Utility\ThicknessConverter.cs" />
     <Page Include="Asset\SystemIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CControlStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

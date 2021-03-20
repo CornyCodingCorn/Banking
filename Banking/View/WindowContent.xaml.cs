@@ -23,6 +23,7 @@ namespace Banking.View
         public WindowContent()
         {
             InitializeComponent();
+            
         }
     }
 }

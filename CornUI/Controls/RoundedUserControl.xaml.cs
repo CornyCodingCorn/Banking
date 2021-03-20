@@ -19,7 +19,7 @@ namespace CornUI.Controls
     /// <summary>
     /// Interaction logic for RoundedUserControl.xaml
     /// </summary>
-    public partial class RoundedUserControl : INPCUserControl
+    public partial class RoundedUserControl : TextBox
     {
         #region Property
         [Category("CustomAppearance")]

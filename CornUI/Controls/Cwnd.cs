@@ -129,13 +129,14 @@ namespace CornUI.Controls
                     if (state == WindowState.Maximized)
                     {
                         GetCurrentScreen();
-                        restoreHeight = RestoreBounds.Height;
-                        Height = MaxHeight;
+                        if (!resizeWithMaximize)
+                        {
+                            Height = MaxHeight;
+                        }
                     }
                     else
                     {
                         MaxHeight = SystemParameters.VirtualScreenHeight;
-                        Height = restoreHeight;
                     }
                 }
                 RaisePropertyChanged("MaximizePadding");
@@ -164,7 +165,8 @@ namespace CornUI.Controls
         }
         #endregion
         protected bool used = false;
-        protected double restoreHeight = 0;
+        protected bool resizeWithMaximize = false;
+
 
         protected Utility.Screen currentScreen;
         protected double maximizePadding = 6;
@@ -231,6 +233,7 @@ namespace CornUI.Controls
             }
             else
             {
+                resizeWithMaximize = true;
                 WindowState = WindowState.Maximized;
             }
         }

@@ -51,16 +51,10 @@
                                     </Grid.RowDefinitions>
                                     
                                     <Border BorderThickness="1"
-                                            Width="{Binding Width}"
-                                            Height="{Binding Height}"
-                                            VerticalAlignment="Center"
-                                            CornerRadius="{Binding RoundEdgeRadius}"
                                             BorderBrush="{Binding TopBarColor}"
                                             Grid.Row="2">
                                         <Rectangle x:Name="backGround"
-                                                   Fill="{Binding BackColor, FallbackValue=White}"
-                                                   RadiusX="{Binding RoundEdgeRadius, FallbackValue=10}"
-                                                   RadiusY="{Binding RoundEdgeRadius, FallbackValue=10}"/>
+                                                   Fill="{Binding BackColor, FallbackValue=White}"/>
                                     </Border>
                                     
                                     <AdornerDecorator Grid.Row="2" Margin="1, 0, 1, 0">

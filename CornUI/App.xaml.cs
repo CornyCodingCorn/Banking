@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Windows.Navigation;
 using System.Windows;
 
 namespace CornUI
@@ -13,7 +9,10 @@ namespace CornUI
     /// </summary>
     public partial class App : Application
     {
-        protected void Start(object sender, StartupEventArgs e)
+        private void Load(object sender, StartupEventArgs e)
+        {
+        }
+        private void Start(object sender, NavigationEventArgs e)
         {
         }
     }

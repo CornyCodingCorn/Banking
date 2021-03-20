@@ -7,11 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="100">
     <Button.Resources>
-        <Style TargetType="Border">
-            <Setter Property="CornerRadius" Value="10"/>
-        </Style>
+        <ResourceDictionary>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="{Binding CornerRadius, FallbackValue=10}"/>
+            </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ControlResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Button.Resources>
-    <Grid>
-            
-    </Grid>
+    <Button.Effect>
+        <DropShadowEffect Color="{Binding BorderBrush, Converter={StaticResource BrushAndColorConvertor}}"/>
+    </Button.Effect>
 </Button>

@@ -21,6 +21,8 @@ namespace CornUI.Controls.Normal
     /// </summary>
     public partial class CButton : CornControl
     {
+        public double CornerRadius { get; set; }
+
         public CButton()
         {
             InitializeComponent();

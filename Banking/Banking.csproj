@@ -55,15 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Account\Account.cs" />
-    <Compile Include="Model\Admin.cs" />
-    <Compile Include="Model\Customer\Customer.cs" />
-    <Compile Include="Model\Account\PersonalInfo.cs" />
-    <Compile Include="Model\Customer\Saving.cs" />
-    <Compile Include="Model\Teller\DepositSlip.cs" />
-    <Compile Include="Model\Teller\Slip.cs" />
-    <Compile Include="Model\Teller\Teller.cs" />
-    <Compile Include="Model\Teller\WithDrawSlip.cs" />
     <Compile Include="ViewModel\BaseINPC.cs" />
     <Compile Include="View\MainWin.xaml.cs">
       <DependentUpon>MainWin.xaml</DependentUpon>
@@ -111,13 +102,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Asset\" />
+    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CornUI\CornUI.csproj">
       <Project>{bcd6e6ea-3ad2-4203-99a2-064f09e445e3}</Project>
       <Name>CornUI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Asset\home.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

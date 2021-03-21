@@ -63,11 +63,14 @@
     <Compile Include="Controls\Normal\CButton.xaml.cs">
       <DependentUpon>CButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Normal\CIcon.xaml.cs">
+      <DependentUpon>CIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Normal\CornControl.cs" />
     <Compile Include="Controls\ThemedCwnd.cs" />
     <Compile Include="Model\Theme.cs" />
     <Compile Include="Model\CwndInfo.cs" />
     <Compile Include="Controls\BaseINCP.cs" />
-    <Compile Include="Controls\INPCUserControl.cs" />
     <Compile Include="Model\ThemeFormat.cs" />
     <Compile Include="Utility\BrushAndColorConverter.cs" />
     <Compile Include="Utility\ScreenHelper.cs" />
@@ -80,15 +83,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Normal\CButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Normal\CButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Normal\CIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Utility\ConverterDict.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\CwndStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\Normal\CButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -138,6 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\Themed\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Asset\Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

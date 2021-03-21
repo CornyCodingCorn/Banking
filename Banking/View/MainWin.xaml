@@ -8,7 +8,7 @@
                 xmlns:System="clr-namespace:System;assembly=mscorlib"
                 mc:Ignorable="d"
                 Title="MainWin" Height="450" Width="800"
-                Style="{DynamicResource CwndStyle}">
+                Style="{DynamicResource CwndStyle}" Background="White">
     
     <local:WindowContent>
         

@@ -125,6 +125,7 @@ namespace CornUI.Controls
                 {
                     RaisePropertyChanged("BorderWidth");
                     RaisePropertyChanged("RoundEdgeRadius");
+                    RaisePropertyChanged("BorderPadding");
 
                     if (state == WindowState.Maximized)
                     {
@@ -154,6 +155,23 @@ namespace CornUI.Controls
             }
             set { }
         }
+        public double BorderPadding
+        {
+            get 
+            { 
+                if (state == WindowState.Maximized)
+                {
+                    return 0;
+                }
+
+                return borderPadding; 
+            }
+            set 
+            { 
+                borderPadding = value;
+                RaisePropertyChanged("BorderPadding");
+            }
+        }
         public Utility.Screen CurrentScreen
         {
             get { return currentScreen; }
@@ -169,6 +187,7 @@ namespace CornUI.Controls
 
 
         protected Utility.Screen currentScreen;
+        protected double borderPadding = 15;
         protected double maximizePadding = 6;
         protected bool restoreIfMove = false;
         protected WindowState state = WindowState.Normal;
@@ -176,7 +195,7 @@ namespace CornUI.Controls
         protected string iconPath = "Icon.png";
         protected bool allowResize = true;
         protected CwndInfo info;
-        protected List<Rectangle> resizeRects = new List<Rectangle>();
+        protected Border borderShadow;
 
         #region Constructor
         public Cwnd(CwndInfo info)

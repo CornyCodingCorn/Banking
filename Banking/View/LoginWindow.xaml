@@ -1,0 +1,92 @@
+﻿<wnd:ThemedCwnd x:Class="Banking.View.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Banking.View"
+        xmlns:wnd="clr-namespace:CornUI.Controls;assembly=CornUI"
+        xmlns:ctrls="clr-namespace:CornUI.Controls.Normal;assembly=CornUI"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Style="{DynamicResource CwndStyle}"
+        CwndTitle="Đăng nhập" Height="350" Width="300">
+
+    <wnd:ThemedCwnd.Resources>
+        <ControlTemplate x:Key="DefaultTextboxTemplate" TargetType="TextBox">
+            <Grid>
+                <TextBox Text="{Binding Text, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Text="Default text"
+                Margin="5,0,5,0"
+                Foreground="#FF808080"
+                FontFamily="Tahoma"
+                FontStyle="Normal"
+                IsHitTestVisible="False"
+                x:Name="UserMessage"
+                Visibility="Hidden"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="Text" Value=""/>
+                        <Condition Property="IsKeyboardFocusWithin" Value="False"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Visibility" TargetName="UserMessage" Value="Visible"/>
+                </MultiTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+    </wnd:ThemedCwnd.Resources>
+    
+    <local:WindowContent>
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20px"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20px"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="0.25*"/>
+                <RowDefinition Height="1*" MaxHeight="60"/>
+                <RowDefinition Height="1*" MaxHeight="60"/>
+                <RowDefinition Height="0.75*" MaxHeight="60"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0" Grid.ColumnSpan="4" Source="E:\User\Pictures\logoOnABudget.png"/>
+            <TextBox Template="{StaticResource DefaultTextboxTemplate}" 
+                     Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                     VerticalContentAlignment="Center"
+                     MaxWidth="300" MaxHeight="45"
+                     FontFamily="Tahoma"
+                     Margin="20, 15, 20, 5"/>
+            <PasswordBox
+                     Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                     MaxWidth="300" MaxHeight="45"
+                     Margin="20, 5, 20, 15"/>
+            <ctrls:CButton Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+                           MaxWidth="200" MaxHeight="75"
+                           Text="Đăng nhập"
+                           Margin="30, 0, 30, 0"/>
+            <TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
+                       FontSize="12"
+                       HorizontalAlignment="Center" Margin="0, 15, 0, 15">
+                <Hyperlink>Quên mật khẩu?</Hyperlink>
+            </TextBlock>
+            <TextBlock Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"
+                       FontSize="12" Foreground="White"
+                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                       Margin="0, 0, 0, 10">
+                Chưa có tài khoản?
+                <Hyperlink>Tạo tài khoản</Hyperlink>
+            </TextBlock>
+
+        </Grid>
+    </local:WindowContent>
+</wnd:ThemedCwnd>

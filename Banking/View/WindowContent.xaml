@@ -8,6 +8,5 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <CornUI:CButton Width="100" Height="50" CornerRadius="10" BorderThickness="2, 2, 2, 2"
-                    ShadowDirection="270">
-    </CornUI:CButton>
+                    ShadowDirection="270" IconSize="40" FontSize="29" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
 </UserControl>

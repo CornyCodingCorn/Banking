@@ -40,14 +40,16 @@ namespace CornUI.Controls.Normal
     = DependencyProperty.Register("ShadowThickness", typeof(double), typeof(CButton), new PropertyMetadata((double)5));
 
         public static readonly DependencyProperty IconMaskProperty
-    = DependencyProperty.Register("IconMask", typeof(Image), typeof(CButton), new PropertyMetadata(null));
+    = DependencyProperty.Register("IconMask", typeof(ImageSource), typeof(CButton), new PropertyMetadata(null));
         public static readonly DependencyProperty IconBrushProperty
     = DependencyProperty.Register("IconBrush", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.Black));
+        public static readonly DependencyProperty IconSizeProperty
+    = DependencyProperty.Register("IconSize", typeof(double), typeof(CButton), new PropertyMetadata((double) 20));
 
         public static readonly DependencyProperty TextProperty
     = DependencyProperty.Register("Text", typeof(string), typeof(CButton), new PropertyMetadata("template"));
         public static readonly DependencyProperty IconTextArrangementProperty
-    = DependencyProperty.Register("IconTextArrangement", typeof(Arrangement), typeof(CButton), new PropertyMetadata(Arrangement.IconText));
+    = DependencyProperty.Register("IconTextArrangement", typeof(Arrangement), typeof(CButton), new PropertyMetadata(Arrangement.IconRight));
         public static readonly DependencyProperty CornerRadiusProperty
     = DependencyProperty.Register("CornerRadius", typeof(double), typeof(CButton), new PropertyMetadata((double)0));
         public static readonly DependencyProperty CurrentBackColorProperty
@@ -60,93 +62,102 @@ namespace CornUI.Controls.Normal
 
         public enum Arrangement
         {
-            TextIcon,
-            IconText,
+            IconTop,
+            IconBottom,
+            IconLeft,
+            IconRight,
             NoText,
             NoIcon
         }
 
-        [Category("_Cwnd Color")]
+        [Category("Brush")]
         public Brush BackGround
         {
             get { return (Brush)GetValue(BackGroundProperty); }
             set { SetValue(BackGroundProperty, value); }
         }
-        [Category("_Cwnd Color")]
+        [Category("Brush")]
         public Brush Border
         {
             get { return (Brush)GetValue(BorderProperty); }
             set { SetValue(BorderProperty, value); }
         }
-        [Category("_Cwnd Color")]
+        [Category("Brush")]
         public Brush BackGroundHover
         {
             get { return (Brush)GetValue(BackGroundHoverProperty); }
             set { SetValue(BackGroundHoverProperty, value); }
         }
-        [Category("_Cwnd Color")]
+        [Category("Brush")]
         public Brush BorderHover
         {
             get { return (Brush)GetValue(BorderHoverProperty); }
             set { SetValue(BorderHoverProperty, value); }
         }
-        [Category("_Cwnd Color")]
+        [Category("Brush")]
         public Brush BackGroundPressed
         {
             get { return (Brush)GetValue(BackGroundPressedProperty); }
             set { SetValue(BackGroundPressedProperty, value); }
         }
-        [Category("_Cwnd Color")]
+        [Category("Brush")]
         public Brush BorderPressed
         {
             get { return (Brush)GetValue(BorderPressedProperty); }
             set { SetValue(BorderPressedProperty, value); }
         }
 
-        [Category("_Cwnd Shadow")]
+        [Category("Shadow")]
         public double ShadowDirection
         {
             get { return (double)GetValue(ShadowDirectionProperty); }
             set { SetValue(ShadowDirectionProperty, value); }
         }
-        [Category("_Cwnd Shadow")]
+        [Category("Shadow")]
         public double ShadowOpacity
         {
             get { return (double)GetValue(ShadowOpacityProperty); }
             set { SetValue(ShadowOpacityProperty, value); }
         }
-        [Category("_Cwnd Shadow")]
+        [Category("Shadow")]
         public double ShadowThickness
         {
             get { return (double)GetValue(ShadowThicknessProperty); }
             set { SetValue(ShadowThicknessProperty, value); }
         }
 
-        [Category("_Cwnd")]
+        [Category("Brush")]
         public Brush IconBrush
         {
             get { return (Brush)GetValue(IconBrushProperty); }
             set { SetValue(IconBrushProperty, value); }
         }
-        [Category("_Cwnd")]
-        public Image Icon
+        [Category("Appearance")]
+        public double IconSize
         {
-            get { return (Image)GetValue(IconMaskProperty); }
+            get { return (double)GetValue(IconSizeProperty); }
+            set { SetValue(IconSizeProperty, value); }
+        }
+        [Category("Appearance")]
+        public ImageSource Icon
+        {
+            get { return (ImageSource)GetValue(IconMaskProperty); }
             set { SetValue(IconMaskProperty, value); }
         }
-        [Category("_Cwnd")]
+
+        [Category("Appearance")]
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
-        [Category("_Cwnd")]
+        [Category("Appearance")]
         Arrangement IconTextArrangement
         {
             get { return (Arrangement)GetValue(IconTextArrangementProperty); }
             set { SetValue(IconTextArrangementProperty, value); }
         }
-        [Category("_Cwnd")]
+        [Category("Appearance")]
         public double CornerRadius
         {
             get { return (double)GetValue(CornerRadiusProperty); }

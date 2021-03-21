@@ -11,7 +11,7 @@
                    d:DesignHeight="20" d:DesignWidth="50"
                    Background="{Binding ElementName=root, Path=CurrentBackColor}"
                    BorderBrush="{Binding ElementName=root, Path=CurrentBorderColor}"
-                   BorderThickness="1,1,1,1">
+                   BorderThickness="1,1,1,1" Text="Hi" Icon="/CornUI;component/Asset/Icon.png" IconSize="20">
     <local:CornControl.Resources>
         <ResourceDictionary>
             <Style TargetType="Border">
@@ -22,6 +22,12 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </local:CornControl.Resources>
+    <local:CornControl.IconBrush>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="0"/>
+            <GradientStop Color="Red" Offset="1"/>
+        </LinearGradientBrush>
+    </local:CornControl.IconBrush>
     <local:CornControl.Effect>
         <DropShadowEffect BlurRadius="{Binding ElementName=root, Path=ShadowThickness}" 
                           Direction="{Binding ElementName=root, Path=ShadowDirection}"
@@ -29,7 +35,21 @@
                           Color="{Binding ElementName=root, Path=CurrentBorderColor, Converter={StaticResource BrushAndColorConvertor}}"
                           ShadowDepth="1" />
     </local:CornControl.Effect>
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <local:CIcon x:Name="icon"
+                     ClipImage="{Binding ElementName=root, Path=Icon}" 
+                     ImageColor="{Binding ElementName=root, Path=IconBrush}" 
+                     Width="{Binding ElementName=root, Path=IconSize}"
+                     Height="{Binding ElementName=root, Path=IconSize}"
+                     DockPanel.Dock="Right"/>
+        <TextBlock x:Name="TextBlock" 
+                   FontFamily="{Binding ElementName=root, Path=FontFamily}"
+                   FontWeight="{Binding ElementName=root, Path=FontWeight}"
+                   FontSize="{Binding ElementName=root, Path=FontSize}"
+                   FontStyle="{Binding ElementName=root, Path=FontStyle}"
+                   Foreground="{Binding ElementName=root, Path=Foreground}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="{Binding ElementName=root, Path=Text}"/>
+    </DockPanel>
 </local:CornControl>

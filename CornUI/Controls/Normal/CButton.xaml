@@ -1,4 +1,5 @@
 ﻿<local:CornControl x:Class="CornUI.Controls.Normal.CButton"
+                   x:Name="root"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,8 +8,28 @@
                    mc:Ignorable="d" 
                    Focusable="True"
                    IsTabStop="True"
-                   d:DesignHeight="20" d:DesignWidth="50">
+                   d:DesignHeight="20" d:DesignWidth="50"
+                   Background="{Binding ElementName=root, Path=CurrentBackColor}"
+                   BorderBrush="{Binding ElementName=root, Path=CurrentBorderColor}"
+                   BorderThickness="1,1,1,1">
+    <local:CornControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="{Binding ElementName=root, Path=CornerRadius}"/>
+            </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CornUI;component/Utility/ConverterDict.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </local:CornControl.Resources>
+    <local:CornControl.Effect>
+        <DropShadowEffect BlurRadius="{Binding ElementName=root, Path=ShadowThickness}" 
+                          Direction="{Binding ElementName=root, Path=ShadowDirection}"
+                          Opacity="{Binding ElementName=root, Path=ShadowOpacity}"
+                          Color="{Binding ElementName=root, Path=CurrentBorderColor, Converter={StaticResource BrushAndColorConvertor}}"
+                          ShadowDepth="1" />
+    </local:CornControl.Effect>
     <Grid>
-            
+        
     </Grid>
 </local:CornControl>

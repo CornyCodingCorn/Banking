@@ -30,7 +30,14 @@ namespace CornUI.Controls.Normal
         public static readonly DependencyProperty BackGroundPressedProperty
     = DependencyProperty.Register("BackGroundPressed", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.SkyBlue));
         public static readonly DependencyProperty BorderPressedProperty
-    = DependencyProperty.Register("BorderPressed", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.DeepSkyBlue));
+    = DependencyProperty.Register("BorderThickness", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.Blue));
+
+        public static readonly DependencyProperty ShadowDirectionProperty
+    = DependencyProperty.Register("ShadowDirection", typeof(double), typeof(CButton), new PropertyMetadata((double)270));
+        public static readonly DependencyProperty ShadowOpacityProperty
+    = DependencyProperty.Register("ShadowOpacity", typeof(double), typeof(CButton), new PropertyMetadata((double)0.75));
+        public static readonly DependencyProperty ShadowThicknessProperty
+    = DependencyProperty.Register("ShadowThickness", typeof(double), typeof(CButton), new PropertyMetadata((double)5));
 
         public static readonly DependencyProperty IconMaskProperty
     = DependencyProperty.Register("IconMask", typeof(Image), typeof(CButton), new PropertyMetadata(null));
@@ -44,9 +51,12 @@ namespace CornUI.Controls.Normal
         public static readonly DependencyProperty CornerRadiusProperty
     = DependencyProperty.Register("CornerRadius", typeof(double), typeof(CButton), new PropertyMetadata((double)0));
         public static readonly DependencyProperty CurrentBackColorProperty
-    = DependencyProperty.Register("CurrentBackColor", typeof(Brush), typeof(CButton));
+    = DependencyProperty.Register("CurrentBackColor", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.White));
         public static readonly DependencyProperty CurrentBorderColorProperty
-    = DependencyProperty.Register("CurrentBorderColor", typeof(Brush), typeof(CButton));
+    = DependencyProperty.Register("CurrentBorderColor", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.Gray));
+
+        public static readonly DependencyProperty IsMouseDownProperty
+    = DependencyProperty.Register("IsMouseDown", typeof(bool), typeof(CButton));
 
         public enum Arrangement
         {
@@ -56,42 +66,62 @@ namespace CornUI.Controls.Normal
             NoIcon
         }
 
-        [Category("_Cwnd")]
+        [Category("_Cwnd Color")]
         public Brush BackGround
         {
             get { return (Brush)GetValue(BackGroundProperty); }
             set { SetValue(BackGroundProperty, value); }
         }
-        [Category("_Cwnd")]
+        [Category("_Cwnd Color")]
         public Brush Border
         {
             get { return (Brush)GetValue(BorderProperty); }
             set { SetValue(BorderProperty, value); }
         }
-        [Category("_Cwnd")]
+        [Category("_Cwnd Color")]
         public Brush BackGroundHover
         {
             get { return (Brush)GetValue(BackGroundHoverProperty); }
             set { SetValue(BackGroundHoverProperty, value); }
         }
-        [Category("_Cwnd")]
+        [Category("_Cwnd Color")]
         public Brush BorderHover
         {
             get { return (Brush)GetValue(BorderHoverProperty); }
             set { SetValue(BorderHoverProperty, value); }
         }
-        [Category("_Cwnd")]
+        [Category("_Cwnd Color")]
         public Brush BackGroundPressed
         {
             get { return (Brush)GetValue(BackGroundPressedProperty); }
             set { SetValue(BackGroundPressedProperty, value); }
         }
-        [Category("_Cwnd")]
+        [Category("_Cwnd Color")]
         public Brush BorderPressed
         {
             get { return (Brush)GetValue(BorderPressedProperty); }
             set { SetValue(BorderPressedProperty, value); }
         }
+
+        [Category("_Cwnd Shadow")]
+        public double ShadowDirection
+        {
+            get { return (double)GetValue(ShadowDirectionProperty); }
+            set { SetValue(ShadowDirectionProperty, value); }
+        }
+        [Category("_Cwnd Shadow")]
+        public double ShadowOpacity
+        {
+            get { return (double)GetValue(ShadowOpacityProperty); }
+            set { SetValue(ShadowOpacityProperty, value); }
+        }
+        [Category("_Cwnd Shadow")]
+        public double ShadowThickness
+        {
+            get { return (double)GetValue(ShadowThicknessProperty); }
+            set { SetValue(ShadowThicknessProperty, value); }
+        }
+
         [Category("_Cwnd")]
         public Brush IconBrush
         {
@@ -133,6 +163,12 @@ namespace CornUI.Controls.Normal
         {
             get { return (Brush)GetValue(CurrentBorderColorProperty); }
             set { SetValue(CurrentBorderColorProperty, value); }
+        }
+
+        public bool IsMouseDown
+        {
+            get { return (bool)GetValue(IsMouseDownProperty); }
+            set { SetValue(IsMouseDownProperty, value); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -102,7 +102,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Asset\" />
     <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +109,9 @@
       <Project>{bcd6e6ea-3ad2-4203-99a2-064f09e445e3}</Project>
       <Name>CornUI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Asset\home.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

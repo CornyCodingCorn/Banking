@@ -31,8 +31,6 @@ namespace CornUI.Controls.Normal
     = DependencyProperty.Register("BackGroundPressed", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.SkyBlue));
         public static readonly DependencyProperty BorderPressedProperty
     = DependencyProperty.Register("BorderThickness", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.Blue));
-        public static readonly DependencyProperty DefaultTextBrushProperty
-    = DependencyProperty.Register("DefaultTextBrush", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.DarkGray));
 
         public static readonly DependencyProperty ShadowDirectionProperty
     = DependencyProperty.Register("ShadowDirection", typeof(double), typeof(CButton), new PropertyMetadata((double)270));
@@ -48,11 +46,8 @@ namespace CornUI.Controls.Normal
         public static readonly DependencyProperty IconSizeProperty
     = DependencyProperty.Register("IconSize", typeof(double), typeof(CButton), new PropertyMetadata((double) 20));
 
-
-        public static readonly DependencyProperty DefaultTextProperty
-    = DependencyProperty.Register("DefaultText", typeof(string), typeof(CButton), new PropertyMetadata("Type"));
         public static readonly DependencyProperty TextProperty
-    = DependencyProperty.Register("Text", typeof(string), typeof(CButton), new PropertyMetadata("template"));
+    = DependencyProperty.Register("Text", typeof(string), typeof(CButton), new PropertyMetadata(""));
         public static readonly DependencyProperty IconTextArrangementProperty
     = DependencyProperty.Register("IconTextArrangement", typeof(Arrangement), typeof(CButton), new PropertyMetadata(Arrangement.IconRight));
         public static readonly DependencyProperty CornerRadiusProperty
@@ -111,12 +106,6 @@ namespace CornUI.Controls.Normal
             get { return (Brush)GetValue(BorderPressedProperty); }
             set { SetValue(BorderPressedProperty, value); }
         }
-        [Category("Brush")]
-        public Brush DefaulTextBrush
-        {
-            get { return (Brush)GetValue(DefaultTextBrushProperty); }
-            set { SetValue(DefaultTextBrushProperty, value); }
-        }
 
         [Category("Shadow")]
         public double ShadowDirection
@@ -156,19 +145,6 @@ namespace CornUI.Controls.Normal
             set { SetValue(IconMaskProperty, value); }
         }
 
-        [Category("Text")]
-        public string DefaultText
-        {
-            get { return (string)GetValue(DefaultTextProperty); }
-            set { SetValue(TextProperty, value); }
-        }
-
-        [Category("Appearance")]
-        public string Text
-        {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
-        }
         [Category("Appearance")]
         Arrangement IconTextArrangement
         {
@@ -191,7 +167,11 @@ namespace CornUI.Controls.Normal
         public Brush CurrentBorderColor
         {
             get { return (Brush)GetValue(CurrentBorderColorProperty); }
-            set { SetValue(CurrentBorderColorProperty, value); }
+            set 
+            { 
+                SetValue(CurrentBorderColorProperty, value);
+                RaisePropertyChanged("CurrentBorderColor");
+            }
         }
 
         public CornControl()
@@ -216,59 +196,5 @@ namespace CornUI.Controls.Normal
             }
         }
         #endregion
-
-        protected override void OnMouseEnter(MouseEventArgs e)
-        {
-            base.OnMouseEnter(e);
-            MouseHover();
-        }
-        protected void MouseHover()
-        {
-            CurrentBackColor = BackGroundHover;
-            if (!IsFocused)
-            {
-                CurrentBorderColor = BorderHover;
-            }
-        }
-
-        protected override void OnMouseLeave(MouseEventArgs e)
-        {
-            base.OnMouseLeave(e);
-            CurrentBackColor = BackGround;
-            if (!IsFocused)
-            {
-                CurrentBorderColor = Border;
-            }
-        }
-
-        protected override void OnMouseDown(MouseButtonEventArgs e)
-        {
-            base.OnMouseDown(e);
-            this.Focus();
-            CurrentBackColor = BackGroundPressed;
-        }
-        protected override void OnLostFocus(RoutedEventArgs e)
-        {
-            base.OnLostFocus(e);
-            if (IsMouseOver)
-            {
-                MouseHover();
-            }
-            else
-            {
-                CurrentBorderColor = Border;
-            }
-        }
-        protected override void OnGotFocus(RoutedEventArgs e)
-        {
-            base.OnGotFocus(e);
-            CurrentBorderColor = BorderPressed;
-        }
-
-        protected override void OnMouseUp(MouseButtonEventArgs e)
-        {
-            base.OnMouseUp(e);
-            CurrentBackColor = BackGround;
-        }
     }
 }

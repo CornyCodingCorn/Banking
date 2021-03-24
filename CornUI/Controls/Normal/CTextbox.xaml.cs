@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.ComponentModel;
 namespace CornUI.Controls.Normal
 {
     /// <summary>
@@ -20,25 +20,96 @@ namespace CornUI.Controls.Normal
     /// </summary>
     public partial class CTextbox : CornControl
     {
+        public static readonly DependencyProperty DefaultTextProperty
+    = DependencyProperty.Register("DefaultText", typeof(string), typeof(CButton), new PropertyMetadata("Type"));
+        public static readonly DependencyProperty DefaultTextBrushProperty
+    = DependencyProperty.Register("DefaultTextBrush", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.DarkGray));
+
+        [Category("Brush")]
+        public Brush DefaulTextBrush
+        {
+            get { return (Brush)GetValue(DefaultTextBrushProperty); }
+            set { SetValue(DefaultTextBrushProperty, value); }
+        }
+        [Category("Text")]
+        public string DefaultText
+        {
+            get { return (string)GetValue(DefaultTextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+        [Category("Appearance")]
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set 
+            { 
+                SetValue(TextProperty, value);
+                if (textBlock != null)
+                {
+                    if (Text == "")
+                    {
+                        textBlock.Opacity = 1;
+                    }
+                    else
+                    {
+                        textBlock.Opacity = 0;
+                    }
+                }
+            }
+        }
+
         public CTextbox()
         {
             InitializeComponent();
+            textBox.GotFocus += ControlGotFocus;
+            textBox.LostFocus += ControlLostFocus;
         }
 
-        protected void TextBlocKMouseDown(object sender, MouseEventArgs e)
+        protected void ControlMouseDown(object sender, MouseButtonEventArgs e)
         {
-            textBox.Focus();
-        }
-
-        protected void textBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (textBlock.Text == "")
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
-                textBox.IsEnabled = true;
+                textBox.Focus();
+            }
+        }
+
+        protected override void OnMouseLeave(MouseEventArgs e)
+        {
+            base.OnMouseLeave(e);
+            if (IsMouseOver)
+                return;
+
+            CurrentBackColor = BackGround;
+            if (!textBox.IsFocused)
+            {
+                CurrentBorderColor = Border;
+            }
+        }
+        protected override void OnMouseEnter(MouseEventArgs e)
+        {
+            base.OnMouseEnter(e);
+            CurrentBackColor = BackGroundHover;
+            if (!textBox.IsFocused)
+            {
+                CurrentBorderColor = BorderHover;
+            }
+        }
+        protected void ControlGotFocus(object sender, EventArgs e)
+        {
+            CurrentBackColor = BackGroundPressed;
+            CurrentBorderColor = BorderPressed;
+        }
+        protected void ControlLostFocus(object sender, EventArgs e)
+        {
+            if (IsMouseOver)
+            {
+                CurrentBackColor = BackGroundHover;
+                CurrentBorderColor = BorderHover;
             }
             else
             {
-                textBox.IsEnabled = false;
+                CurrentBackColor = BackGround;
+                CurrentBorderColor = Border;
             }
         }
     }

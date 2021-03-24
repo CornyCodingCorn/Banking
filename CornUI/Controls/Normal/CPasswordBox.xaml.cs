@@ -18,52 +18,58 @@ namespace CornUI.Controls.Normal
     /// <summary>
     /// Interaction logic for CTextbox.xaml
     /// </summary>
-    public partial class CTextbox : CornControl
+    public partial class CPasswordBox : CornControl
     {
-        public static readonly DependencyProperty DefaultTextProperty
-    = DependencyProperty.Register("DefaultText", typeof(string), typeof(CButton), new PropertyMetadata("Type"));
-        public static readonly DependencyProperty DefaultTextBrushProperty
-    = DependencyProperty.Register("DefaultTextBrush", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.DarkGray));
 
         [Category("Brush")]
         public Brush DefaulTextBrush
         {
-            get { return (Brush)GetValue(DefaultTextBrushProperty); }
-            set { SetValue(DefaultTextBrushProperty, value); }
+            get { return (Brush)GetValue(CTextbox.DefaultTextBrushProperty); }
+            set { SetValue(CTextbox.DefaultTextBrushProperty, value); }
         }
         [Category("Text")]
         public string DefaultText
         {
-            get { return (string)GetValue(DefaultTextProperty); }
-            set { SetValue(TextProperty, value); }
+            get { return (string)GetValue(CTextbox.DefaultTextProperty); }
+            set { SetValue(CTextbox.DefaultTextProperty, value); }
         }
         [Category("Text")]
-        public string Text
+        public char PasswordChar
         {
-            get { return (string)GetValue(TextProperty); }
+            get { return (char)GetValue(PasswordBox.PasswordCharProperty); }
+            set
+            {
+                SetValue(PasswordBox.PasswordCharProperty, value);
+                RaisePropertyChanged("PasswordChar");
+            }
+        }
+        public string Password
+        {
+            get { return textBox.Password; }
             set 
             { 
-                SetValue(TextProperty, value);
-                if (textBlock != null)
-                {
-                    if (Text == "")
-                    {
-                        textBlock.Opacity = 1;
-                    }
-                    else
-                    {
-                        textBlock.Opacity = 0;
-                    }
-                }
-                RaisePropertyChanged("Text");
+                textBox.Password = value;
+                RaisePropertyChanged("Password");
+            }
+        }
+        [Category("Text")]
+        public string MaxLength
+        {
+            get { return (string)GetValue(PasswordBox.MaxLengthProperty); }
+            set
+            {
+                SetValue(PasswordBox.MaxLengthProperty, value);
+                RaisePropertyChanged("MaxLength");
             }
         }
 
-        public CTextbox()
+        public CPasswordBox()
         {
             InitializeComponent();
+            this.PasswordChar = '●';
             textBox.GotFocus += ControlGotFocus;
             textBox.LostFocus += ControlLostFocus;
+            textBox.PreviewKeyDown += CheckForEmpty;
         }
 
         protected void ControlMouseDown(object sender, MouseButtonEventArgs e)
@@ -111,6 +117,19 @@ namespace CornUI.Controls.Normal
             {
                 CurrentBackColor = BackGround;
                 CurrentBorderColor = Border;
+            }
+
+            if (textBox.Password == "")
+            {
+                textBlock.Opacity = 1;
+            }
+        }
+
+        protected void CheckForEmpty(object sender, KeyEventArgs e)
+        {
+            if (textBox.Password == "")
+            {
+                textBlock.Opacity = 0;
             }
         }
     }

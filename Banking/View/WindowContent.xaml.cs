@@ -25,5 +25,11 @@ namespace Banking.View
             InitializeComponent();
             
         }
+
+        private void ClickEvent(object sender, RoutedEventArgs e)
+        {
+            textBox.Text = "ShitHead";
+            textBlock.Text = password.Password;
+        }
     }
 }

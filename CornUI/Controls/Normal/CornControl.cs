@@ -45,9 +45,9 @@ namespace CornUI.Controls.Normal
     = DependencyProperty.Register("IconBrush", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.Black));
         public static readonly DependencyProperty IconSizeProperty
     = DependencyProperty.Register("IconSize", typeof(double), typeof(CButton), new PropertyMetadata((double) 20));
-
+    
         public static readonly DependencyProperty TextProperty
-    = DependencyProperty.Register("Text", typeof(string), typeof(CButton), new PropertyMetadata("template"));
+    = DependencyProperty.Register("Text", typeof(string), typeof(CButton), new PropertyMetadata(""));
         public static readonly DependencyProperty IconTextArrangementProperty
     = DependencyProperty.Register("IconTextArrangement", typeof(Arrangement), typeof(CButton), new PropertyMetadata(Arrangement.IconRight));
         public static readonly DependencyProperty CornerRadiusProperty
@@ -146,12 +146,6 @@ namespace CornUI.Controls.Normal
         }
 
         [Category("Appearance")]
-        public string Text
-        {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
-        }
-        [Category("Appearance")]
         Arrangement IconTextArrangement
         {
             get { return (Arrangement)GetValue(IconTextArrangementProperty); }
@@ -173,7 +167,17 @@ namespace CornUI.Controls.Normal
         public Brush CurrentBorderColor
         {
             get { return (Brush)GetValue(CurrentBorderColorProperty); }
-            set { SetValue(CurrentBorderColorProperty, value); }
+            set 
+            { 
+                SetValue(CurrentBorderColorProperty, value);
+                RaisePropertyChanged("CurrentBorderColor");
+            }
+        }
+
+        public CornControl()
+        {
+            CurrentBorderColor = Border;
+            CurrentBackColor = BackGround;
         }
 
         public bool IsMouseDown

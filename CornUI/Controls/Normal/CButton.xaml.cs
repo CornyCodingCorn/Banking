@@ -21,13 +21,31 @@ namespace CornUI.Controls.Normal
     /// </summary>
     public partial class CButton : CornControl
     {
-        public double CornerRadius { get; set; }
+        public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(
+        "Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(CButton));
+
+        public event RoutedEventHandler Click
+        {
+            add { AddHandler(ClickEvent, value); }
+            remove { RemoveHandler(ClickEvent, value); }
+        }
+
+        [Category("Appearance")]
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        void RaiseClickEvent()
+        {
+            RoutedEventArgs newEventArgs = new RoutedEventArgs(CButton.ClickEvent);
+            RaiseEvent(newEventArgs);
+        }
 
         public CButton()
         {
             InitializeComponent();
-            CurrentBorderColor = Border;
-            CurrentBackColor = BackGround;
         }
 
         protected override void OnMouseEnter(MouseEventArgs e)
@@ -59,6 +77,10 @@ namespace CornUI.Controls.Normal
             base.OnMouseDown(e);
             this.Focus();
             CurrentBackColor = BackGroundPressed;
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                RaiseClickEvent();
+            }
         }
         protected override void OnLostFocus(RoutedEventArgs e)
         {

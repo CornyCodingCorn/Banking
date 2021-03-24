@@ -45,7 +45,7 @@ namespace CornUI.Controls.Normal
     = DependencyProperty.Register("IconBrush", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.Black));
         public static readonly DependencyProperty IconSizeProperty
     = DependencyProperty.Register("IconSize", typeof(double), typeof(CButton), new PropertyMetadata((double) 20));
-
+    
         public static readonly DependencyProperty TextProperty
     = DependencyProperty.Register("Text", typeof(string), typeof(CButton), new PropertyMetadata(""));
         public static readonly DependencyProperty IconTextArrangementProperty
@@ -179,6 +179,7 @@ namespace CornUI.Controls.Normal
             CurrentBorderColor = Border;
             CurrentBackColor = BackGround;
         }
+
         public bool IsMouseDown
         {
             get { return (bool)GetValue(IsMouseDownProperty); }

@@ -18,6 +18,7 @@ namespace CornUI.Controls.Normal
     /// <summary>
     /// Interaction logic for CTextbox.xaml
     /// </summary>
+    /// /////// 
     public partial class CPasswordBox : CornControl
     {
 

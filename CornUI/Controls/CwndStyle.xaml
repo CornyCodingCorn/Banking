@@ -63,7 +63,8 @@
                                                    Fill="{Binding BackColor, FallbackValue=White}"/>
                                         </Border>
 
-                                        <AdornerDecorator Grid.Row="2" Margin="1, 0, 1, 0">
+                                        <AdornerDecorator Grid.Row="2" 
+                                                          Margin="1, 0, 1, 0">
                                             <ContentPresenter/>
                                         </AdornerDecorator>
 

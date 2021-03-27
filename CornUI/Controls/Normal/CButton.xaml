@@ -9,8 +9,6 @@
                    Focusable="True"
                    IsTabStop="True"
                    d:DesignHeight="20" d:DesignWidth="50"
-                   Background="{Binding ElementName=root, Path=CurrentBackColor}"
-                   BorderBrush="{Binding ElementName=root, Path=CurrentBorderColor}"
                    BorderThickness="1,1,1,1" Icon="/CornUI;component/Asset/Icon.png" IconSize="20">
     <local:CornControl.Resources>
         <ResourceDictionary>

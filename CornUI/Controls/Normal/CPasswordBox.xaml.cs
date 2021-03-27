@@ -53,9 +53,9 @@ namespace CornUI.Controls.Normal
             }
         }
         [Category("Text")]
-        public string MaxLength
+        public Int32 MaxLength
         {
-            get { return (string)GetValue(PasswordBox.MaxLengthProperty); }
+            get { return (Int32)GetValue(PasswordBox.MaxLengthProperty); }
             set
             {
                 SetValue(PasswordBox.MaxLengthProperty, value);

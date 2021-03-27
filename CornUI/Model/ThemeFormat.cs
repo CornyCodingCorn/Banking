@@ -12,7 +12,7 @@ namespace CornUI.Model
         public Brush textBoxBackGround;
         public Brush backGround;
         public Brush menuBar;
-        public Brush buttonBackGround;
+        public Brush hoverControlDarker;
         public Brush textAndIcon;
         public Brush importantTextAndIcon;
         public Brush focusedControl;

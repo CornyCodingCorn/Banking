@@ -23,7 +23,6 @@ namespace Banking.View
         public WindowContent()
         {
             InitializeComponent();
-            
         }
 
         private void ClickEvent(object sender, RoutedEventArgs e)

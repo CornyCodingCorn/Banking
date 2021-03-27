@@ -11,34 +11,6 @@
         Style="{DynamicResource CwndStyle}"
         CwndTitle="Đăng nhập" Height="350" Width="300">
 
-    <!--<wnd:ThemedCwnd.Resources>
-        <ControlTemplate x:Key="DefaultTextboxTemplate" TargetType="TextBox">
-            <Grid>
-                <TextBox Text="{Binding Text, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Text="Default text"
-                Margin="5,0,5,0"
-                Foreground="#FF808080"
-                FontFamily="Tahoma"
-                FontStyle="Normal"
-                IsHitTestVisible="False"
-                x:Name="UserMessage"
-                Visibility="Hidden"/>
-            </Grid>
-            <ControlTemplate.Triggers>
-                <MultiTrigger>
-                    <MultiTrigger.Conditions>
-                        <Condition Property="Text" Value=""/>
-                        <Condition Property="IsKeyboardFocusWithin" Value="False"/>
-                    </MultiTrigger.Conditions>
-                    <Setter Property="Visibility" TargetName="UserMessage" Value="Visible"/>
-                </MultiTrigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-
-    </wnd:ThemedCwnd.Resources>-->
-    
     <local:WindowContent>
         <Grid>
 
@@ -48,7 +20,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="20px"/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="0.25*"/>
@@ -62,14 +34,16 @@
             <Image Grid.Row="0" Grid.ColumnSpan="4" Source="E:\User\Pictures\logoOnABudget.png"/>
             <corns:CTextbox
                 Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
-                     VerticalContentAlignment="Center"
-                     MaxWidth="300" MaxHeight="45"
-                     FontFamily="Tahoma"
-                     Margin="20, 15, 20, 5"/>
+                VerticalContentAlignment="Center"
+                MaxWidth="300" MaxHeight="45"
+                Foreground="White"
+                FontFamily="Tahoma"
+                Margin="20, 15, 20, 5"/>
             <corns:CPasswordBox
-                     Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
-                     MaxWidth="300" MaxHeight="45"
-                     Margin="20, 5, 20, 15"/>
+                Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                MaxWidth="300" MaxHeight="45"
+                Foreground="White"
+                Margin="20, 5, 20, 15"/>
             <corns:CButton Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
                            MaxWidth="200" MaxHeight="75"
                            Text="Đăng nhập"

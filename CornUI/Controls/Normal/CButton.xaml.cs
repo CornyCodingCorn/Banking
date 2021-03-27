@@ -47,7 +47,6 @@ namespace CornUI.Controls.Normal
         {
             InitializeComponent();
         }
-        public CButton(bool themed) { }
 
         protected override void OnMouseEnter(MouseEventArgs e)
         {

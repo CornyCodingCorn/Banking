@@ -30,7 +30,7 @@ namespace CornUI.Controls.Normal
         public static readonly DependencyProperty BackGroundPressedProperty
     = DependencyProperty.Register("BackGroundPressed", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.SkyBlue));
         public static readonly DependencyProperty BorderPressedProperty
-    = DependencyProperty.Register("BorderPressed", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.Blue));
+    = DependencyProperty.Register("BorderThickness", typeof(Brush), typeof(CButton), new PropertyMetadata(Brushes.Blue));
 
         public static readonly DependencyProperty ShadowDirectionProperty
     = DependencyProperty.Register("ShadowDirection", typeof(double), typeof(CButton), new PropertyMetadata((double)270));
@@ -59,12 +59,6 @@ namespace CornUI.Controls.Normal
 
         public static readonly DependencyProperty IsMouseDownProperty
     = DependencyProperty.Register("IsMouseDown", typeof(bool), typeof(CButton));
-
-        static CornControl()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornControl),
-                new FrameworkPropertyMetadata(typeof(CornControl)));
-        }
 
         public enum Arrangement
         {
@@ -180,7 +174,7 @@ namespace CornUI.Controls.Normal
             }
         }
 
-        public CornControl() : base()
+        public CornControl()
         {
             CurrentBorderColor = Border;
             CurrentBackColor = BackGround;

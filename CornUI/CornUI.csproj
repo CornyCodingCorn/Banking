@@ -74,7 +74,6 @@
       <DependentUpon>CTextbox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ThemedCwnd.cs" />
-    <Compile Include="Controls\Themed\CButtonThemed.cs" />
     <Compile Include="Model\Theme.cs" />
     <Compile Include="Model\CwndInfo.cs" />
     <Compile Include="Controls\BaseINCP.cs" />
@@ -162,7 +161,9 @@
     <Resource Include="Asset\SystemIcon\Maximize.png" />
     <Resource Include="Asset\SystemIcon\Minimize.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controls\Themed\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Asset\Icon.png" />
   </ItemGroup>

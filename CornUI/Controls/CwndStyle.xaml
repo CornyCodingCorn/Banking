@@ -65,7 +65,7 @@
 
                                         <AdornerDecorator Grid.Row="2" 
                                                           Margin="1, 0, 1, 0">
-                                            <ContentPresenter/>
+                                            <ContentPresenter Focusable="True"/>
                                         </AdornerDecorator>
 
                                         <!--#region TopBar-->

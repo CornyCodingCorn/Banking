@@ -26,10 +26,10 @@ namespace Banking.View
             
         }
 
-        private void ClickEvent(object sender, RoutedEventArgs e)
-        {
-            textBox.Text = "ShitHead";
-            textBlock.Text = password.Password;
-        }
+        //private void ClickEvent(object sender, RoutedEventArgs e)
+        //{
+        //    textBox.Text = "ShitHead";
+        //    textBlock.Text = password.Password;
+        //}
     }
 }

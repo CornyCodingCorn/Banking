@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Banking.View"
         xmlns:wnd="clr-namespace:CornUI.Controls;assembly=CornUI"
-        xmlns:ctrls="clr-namespace:CornUI.Controls.Normal;assembly=CornUI"
+        xmlns:corns="clr-namespace:CornUI.Controls.Normal;assembly=CornUI"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Style="{DynamicResource CwndStyle}"
         CwndTitle="Đăng nhập" Height="350" Width="300">
 
-    <wnd:ThemedCwnd.Resources>
+    <!--<wnd:ThemedCwnd.Resources>
         <ControlTemplate x:Key="DefaultTextboxTemplate" TargetType="TextBox">
             <Grid>
                 <TextBox Text="{Binding Text, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" />
@@ -37,7 +37,7 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
 
-    </wnd:ThemedCwnd.Resources>
+    </wnd:ThemedCwnd.Resources>-->
     
     <local:WindowContent>
         <Grid>
@@ -60,17 +60,17 @@
             </Grid.RowDefinitions>
 
             <Image Grid.Row="0" Grid.ColumnSpan="4" Source="E:\User\Pictures\logoOnABudget.png"/>
-            <TextBox Template="{StaticResource DefaultTextboxTemplate}" 
-                     Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+            <corns:CTextbox
+                Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                      VerticalContentAlignment="Center"
                      MaxWidth="300" MaxHeight="45"
                      FontFamily="Tahoma"
                      Margin="20, 15, 20, 5"/>
-            <PasswordBox
+            <corns:CPasswordBox
                      Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                      MaxWidth="300" MaxHeight="45"
                      Margin="20, 5, 20, 15"/>
-            <ctrls:CButton Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+            <corns:CButton Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
                            MaxWidth="200" MaxHeight="75"
                            Text="Đăng nhập"
                            Margin="30, 0, 30, 0"/>

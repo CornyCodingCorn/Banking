@@ -60,13 +60,13 @@ namespace CornUI.Model
                 info.TopBarColor = value;
             }
         }
-        public Brush HoverControlDarker
+        public Brush ButtonBackGround
         {
-            get { return hoverControlDarker; }
+            get { return buttonBackGround; }
             set
             {
-                hoverControlDarker = value;
-                RaisePropertyChanged("HoverControlDarker");
+                buttonBackGround = value;
+                RaisePropertyChanged("ButtonBackGround");
             }
         }
         public Brush TextAndIcon
@@ -134,12 +134,12 @@ namespace CornUI.Model
         {
             TextBoxBackGround = new SolidColorBrush(Color.FromArgb(255, 18, 18, 18));
             BackGround = new SolidColorBrush(Color.FromArgb(255, 24, 24, 24));
-            MenuBar = new SolidColorBrush(Color.FromArgb(255, 48, 48, 48));
+            MenuBar = new SolidColorBrush(Color.FromArgb(255, 32, 32, 32));
+            ButtonBackGround = new SolidColorBrush(Color.FromArgb(255, 48, 48, 48));
             TextAndIcon = new SolidColorBrush(Color.FromArgb(255, 160, 160, 160));
             ImportantTextAndIcon = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
             FocusedControl = new SolidColorBrush(Color.FromArgb(255, 62, 166, 255));
             HoverControl = new SolidColorBrush(Color.FromArgb(255, 98, 138, 173));
-            HoverControlDarker = new SolidColorBrush(Color.FromArgb(255, 32, 32, 32));
             ShadowOpacity = 0.75f;
             FontType = new FontFamily("Segoe UI");
         }
@@ -148,12 +148,12 @@ namespace CornUI.Model
         {
             TextBoxBackGround = new SolidColorBrush(Color.FromArgb(255, 18, 18, 18));
             BackGround = new SolidColorBrush(Color.FromArgb(255, 24, 24, 24));
-            MenuBar = new SolidColorBrush(Color.FromArgb(255, 48, 48, 48));
+            MenuBar = new SolidColorBrush(Color.FromArgb(255, 32, 32, 32));
+            ButtonBackGround = new SolidColorBrush(Color.FromArgb(255, 48, 48, 48));
             TextAndIcon = new SolidColorBrush(Color.FromArgb(255, 160, 160, 160));
             ImportantTextAndIcon = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
             FocusedControl = new SolidColorBrush(Color.FromArgb(255, 62, 166, 255));
             HoverControl = new SolidColorBrush(Color.FromArgb(255, 98, 138, 173));
-            HoverControlDarker = new SolidColorBrush(Color.FromArgb(255, 32, 32, 32));
             ShadowOpacity = 0.75f;
             FontType = new FontFamily("Segoe UI");
         }
@@ -163,7 +163,7 @@ namespace CornUI.Model
             TextBoxBackGround = format.textBoxBackGround;
             BackGround = format.backGround;
             MenuBar = format.menuBar;
-            HoverControlDarker = format.hoverControlDarker;
+            ButtonBackGround = format.buttonBackGround;
             TextAndIcon = format.textAndIcon;
             ImportantTextAndIcon = format.importantTextAndIcon;
             FocusedControl = format.focusedControl;
@@ -176,7 +176,7 @@ namespace CornUI.Model
         protected Brush textBoxBackGround;
         protected Brush backGround;
         protected Brush menuBar;
-        protected Brush hoverControlDarker;
+        protected Brush buttonBackGround;
         protected Brush textAndIcon;
         protected Brush importantTextAndIcon;
         protected Brush focusedControl;

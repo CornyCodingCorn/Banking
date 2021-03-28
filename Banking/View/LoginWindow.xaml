@@ -5,62 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Banking.View"
         xmlns:wnd="clr-namespace:CornUI.Controls;assembly=CornUI"
-        xmlns:corns="clr-namespace:CornUI.Controls.Normal;assembly=CornUI"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Style="{DynamicResource CwndStyle}"
         CwndTitle="Đăng nhập" Height="350" Width="300">
 
-    <local:WindowContent>
-        <Grid>
+    <local:LoginWindowContent x:Name="LoginWinContent">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20px"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="20px"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="0.25*"/>
-                <RowDefinition Height="1*" MaxHeight="60"/>
-                <RowDefinition Height="1*" MaxHeight="60"/>
-                <RowDefinition Height="0.75*" MaxHeight="60"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Image Grid.Row="0" Grid.ColumnSpan="4" Source="E:\User\Pictures\logoOnABudget.png"/>
-            <corns:CTextbox
-                Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
-                VerticalContentAlignment="Center"
-                MaxWidth="300" MaxHeight="45"
-                Foreground="White"
-                FontFamily="Tahoma"
-                Margin="20, 15, 20, 5"/>
-            <corns:CPasswordBox
-                Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
-                MaxWidth="300" MaxHeight="45"
-                Foreground="White"
-                Margin="20, 5, 20, 15"/>
-            <corns:CButton Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
-                           MaxWidth="200" MaxHeight="75"
-                           Text="Đăng nhập"
-                           Margin="30, 0, 30, 0"/>
-            <TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
-                       FontSize="12"
-                       HorizontalAlignment="Center" Margin="0, 15, 0, 15">
-                <Hyperlink>Quên mật khẩu?</Hyperlink>
-            </TextBlock>
-            <TextBlock Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"
-                       FontSize="12" Foreground="White"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                       Margin="0, 0, 0, 10">
-                Chưa có tài khoản?
-                <Hyperlink>Tạo tài khoản</Hyperlink>
-            </TextBlock>
-
-        </Grid>
-    </local:WindowContent>
+    </local:LoginWindowContent>
 </wnd:ThemedCwnd>

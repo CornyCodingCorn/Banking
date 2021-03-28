@@ -10,7 +10,7 @@
                 Title="MainWin" Height="450" Width="800"
                 Style="{DynamicResource CwndStyle}" Background="White">
     
-    <local:WindowContent>
+    <local:WindowContent x:Name="Helo">
         
     </local:WindowContent>
 </wnd:ThemedCwnd>
